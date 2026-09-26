@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
-"""Create a new blog post or LeetCode solution and register it in the JSON index.
+"""Create a new blog post and register it in blog/posts.json.
 
   python3 tools/new.py post "My Title" --tags hpc,notes [--zh "中文标题"] [--slug my-title]
-  python3 tools/new.py lc 42 "Trapping Rain Water" --difficulty Hard --tags "Array,Two Pointers" [--zh 接雨水]
 """
 import argparse
 import datetime as dt
@@ -48,38 +47,6 @@ def new_post(args):
     print(f"created {md_path.relative_to(ROOT)}  (edit title/summary in blog/posts.json)")
 
 
-def new_lc(args):
-    index_path = ROOT / "leetcode" / "problems.json"
-    data = load(index_path)
-    probs = data.setdefault("problems", [])
-    if any(int(p["id"]) == args.id for p in probs):
-        sys.exit(f"problem {args.id} already exists")
-    slug = args.slug or slugify(args.title)
-    fname = f"{args.id:04d}-{slug}.md"
-    md_path = ROOT / "leetcode" / "solutions" / fname
-    md_path.write_text(
-        "## 题意\n\n\n\n## 思路\n\n\n\n## 复杂度\n\n- 时间 $O(n)$\n- 空间 $O(1)$\n\n"
-        "## 代码\n\n### Python\n\n```python\nclass Solution:\n    pass\n```\n",
-        encoding="utf-8",
-    )
-    entry = {
-        "id": args.id,
-        "title": args.title,
-        "slug": slug,
-        "difficulty": args.difficulty,
-        "tags": split_list(args.tags),
-        "lang": split_list(args.lang),
-        "date": args.date or dt.date.today().isoformat(),
-        "file": fname,
-    }
-    if args.zh:
-        entry["title_zh"] = args.zh
-    probs.append(entry)
-    probs.sort(key=lambda p: int(p["id"]))
-    save(index_path, data)
-    print(f"created {md_path.relative_to(ROOT)}")
-
-
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="kind", required=True)
@@ -91,17 +58,6 @@ def main():
     p.add_argument("--tags", help="comma-separated")
     p.add_argument("--summary")
     p.set_defaults(fn=new_post)
-
-    q = sub.add_parser("lc", help="new LeetCode solution")
-    q.add_argument("id", type=int)
-    q.add_argument("title", help="English title as on leetcode.com")
-    q.add_argument("--zh", help="Chinese title as on leetcode.cn")
-    q.add_argument("--slug", help="leetcode URL slug (defaults to the title in kebab-case)")
-    q.add_argument("--difficulty", required=True, choices=["Easy", "Medium", "Hard"])
-    q.add_argument("--tags", help='comma-separated, e.g. "Array,Two Pointers"')
-    q.add_argument("--lang", default="Python", help="comma-separated")
-    q.add_argument("--date", help="YYYY-MM-DD, defaults to today")
-    q.set_defaults(fn=new_lc)
 
     args = ap.parse_args()
     args.fn(args)

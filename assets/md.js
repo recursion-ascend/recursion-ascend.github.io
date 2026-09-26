@@ -1,4 +1,4 @@
-/* Markdown rendering shared by blog posts and LeetCode solutions.
+/* Markdown rendering for blog posts.
    Needs marked (+ optional katex / marked-katex-extension / highlight.js) loaded first. */
 (function () {
   "use strict";

@@ -86,59 +86,7 @@
     return new Intl.DateTimeFormat(lang() === "zh" ? "zh-CN" : "en-US", opts).format(d);
   }
 
-  var TAG_ZH = {
-    "Array": "数组", "Hash Table": "哈希表", "String": "字符串", "Two Pointers": "双指针",
-    "Sliding Window": "滑动窗口", "Dynamic Programming": "动态规划", "Binary Search": "二分查找",
-    "Tree": "树", "Binary Tree": "二叉树", "Graph": "图", "Linked List": "链表", "Doubly-Linked List": "双向链表",
-    "Stack": "栈", "Monotonic Stack": "单调栈", "Queue": "队列", "Heap (Priority Queue)": "堆（优先队列）",
-    "Greedy": "贪心", "Depth-First Search": "深度优先搜索", "Breadth-First Search": "广度优先搜索",
-    "Sorting": "排序", "Math": "数学", "Design": "设计", "Backtracking": "回溯", "Bit Manipulation": "位运算",
-    "Matrix": "矩阵", "Prefix Sum": "前缀和", "Union Find": "并查集", "Trie": "字典树", "Recursion": "递归",
-    "Divide and Conquer": "分治", "Simulation": "模拟", "Topological Sort": "拓扑排序", "Shortest Path": "最短路",
-    "Memoization": "记忆化搜索", "Counting": "计数", "Enumeration": "枚举", "Geometry": "几何",
-    "Segment Tree": "线段树", "Binary Indexed Tree": "树状数组", "Interactive": "交互"
-  };
-  var DIFF_ZH = { Easy: "简单", Medium: "中等", Hard: "困难" };
-  function tagName(tag) { return lang() === "zh" && TAG_ZH[tag] ? TAG_ZH[tag] : tag; }
-  function diffName(d) { return lang() === "zh" ? (DIFF_ZH[d] || d) : d; }
   function pick(obj, key) { return lang() === "zh" && obj[key + "_zh"] ? obj[key + "_zh"] : obj[key]; }
-
-  // Shared floating tooltip for charts.
-  var tipEl = null;
-  function tip(html, x, y) {
-    if (!tipEl) { tipEl = document.createElement("div"); tipEl.className = "viz-tip"; tipEl.setAttribute("role", "tooltip"); document.body.appendChild(tipEl); }
-    if (html == null) { tipEl.classList.remove("show"); return; }
-    tipEl.innerHTML = html;
-    tipEl.style.left = x + "px";
-    tipEl.style.top = y + "px";
-    tipEl.classList.add("show");
-  }
-
-  // Easy / Medium / Hard stacked bar + legend (part-to-whole).
-  var DIFFS = ["Easy", "Medium", "Hard"];
-  function diffBar(barEl, legendEl, problems) {
-    var n = { Easy: 0, Medium: 0, Hard: 0 };
-    problems.forEach(function (p) { if (n[p.difficulty] != null) n[p.difficulty]++; });
-    var total = problems.length;
-    barEl.innerHTML = "";
-    barEl.classList.toggle("empty", total === 0);
-    DIFFS.forEach(function (d) {
-      if (!n[d]) return;
-      var seg = document.createElement("span");
-      seg.className = d;
-      seg.style.flex = n[d] + " 1 0";
-      seg.addEventListener("pointermove", function () {
-        var r = seg.getBoundingClientRect();
-        tip("<b>" + esc(diffName(d)) + "</b> · " + n[d] + " <small>(" + Math.round(n[d] / total * 100) + "%)</small>", r.left + r.width / 2, r.top);
-      });
-      seg.addEventListener("pointerleave", function () { tip(null); });
-      barEl.appendChild(seg);
-    });
-    legendEl.innerHTML = DIFFS.map(function (d) {
-      return '<li><i class="ddot ' + d + '"></i>' + esc(diffName(d)) + " <b>" + n[d] + "</b></li>";
-    }).join("");
-    return n;
-  }
 
   function getJSON(path) {
     return fetch(ROOT + path, { cache: "no-cache" }).then(function (r) {
@@ -148,8 +96,7 @@
   }
 
   window.Site = {
-    root: ROOT, lang: lang, esc: esc, fmtDate: fmtDate, tagName: tagName, diffName: diffName, pick: pick,
-    tip: tip, diffBar: diffBar, getJSON: getJSON, reduceMotion: reduceMotion,
+    root: ROOT, lang: lang, esc: esc, fmtDate: fmtDate, pick: pick, getJSON: getJSON, reduceMotion: reduceMotion,
     onLang: function (fn) { langListeners.push(fn); },
     onTheme: function (fn) { themeListeners.push(fn); },
     setTitle: function (en, zh) { titles = { en: en, zh: zh || en }; document.title = titles[lang()]; }
@@ -318,7 +265,6 @@
       { g: "nav", icon: "hash", en: "Teaching, Awards & Skills", zh: "教学、奖项与技能", run: function () { go("#more"); } },
       { g: "nav", icon: "hash", en: "Contact", zh: "联系我", run: function () { go("#contact"); } },
       { g: "nav", icon: "doc", en: "Blog", zh: "博客", kw: "posts writing notes 文章", run: function () { window.location.href = ROOT + "blog/"; } },
-      { g: "nav", icon: "doc", en: "LeetCode", zh: "力扣刷题", kw: "leetcode algorithms problems 题解 算法", run: function () { window.location.href = ROOT + "leetcode/"; } },
       { g: "actions", icon: "bolt", en: "切换到中文", zh: "Switch to English", kw: "language lang 语言 中文 english", run: function () { setLang(lang() === "zh" ? "en" : "zh"); } },
       { g: "actions", icon: "bolt", en: "Toggle dark / light theme", zh: "切换深色 / 浅色主题", kw: "theme dark light 主题", run: function () { setTheme(theme() === "dark" ? "light" : "dark"); } },
       { g: "actions", icon: "bolt", en: "Copy email address", zh: "复制邮箱地址", kw: "email mail contact 邮箱", run: copyEmail },
@@ -417,42 +363,30 @@
     langListeners.push(function () { if (!pal.hidden) { input.placeholder = t("search"); render(); } });
   })();
 
-  /* ---------------- Home: latest posts + LeetCode summary ---------------- */
+  /* ---------------- Home: latest posts ---------------- */
   (function () {
     var postsEl = document.getElementById("home-posts");
-    var lcCard = document.getElementById("home-lc");
-    if (!postsEl || !lcCard) return;
-    var posts = null, probs = null;
+    if (!postsEl) return;
+    var posts = null;
     function byDateDesc(a, b) { return String(b.date).localeCompare(String(a.date)); }
     function renderPosts() {
       if (!posts) return;
-      var list = posts.slice().sort(byDateDesc).slice(0, 4);
+      var list = posts.slice().sort(byDateDesc).slice(0, 5);
       postsEl.innerHTML = list.length ? list.map(function (p) {
         return '<li><a href="blog/post.html?p=' + encodeURIComponent(p.slug) + '"><span>' + esc(pick(p, "title")) +
           "</span><time>" + esc(fmtDate(p.date)) + "</time></a></li>";
       }).join("") : '<li class="state-msg"><span class="en">No posts yet.</span><span class="zh" lang="zh-CN">还没有文章。</span></li>';
     }
-    function renderLC() {
-      if (!probs) return;
-      document.getElementById("home-lc-total").textContent = probs.length;
-      diffBar(document.getElementById("home-lc-bar"), document.getElementById("home-lc-legend"), probs);
-      var recent = probs.slice().sort(byDateDesc).slice(0, 3);
-      document.getElementById("home-lc-recent").innerHTML = recent.map(function (p) {
-        return '<li><a href="leetcode/problem.html?id=' + encodeURIComponent(p.id) + '"><span><i class="ddot ' + esc(p.difficulty) +
-          '"></i> ' + esc(p.id) + ". " + esc(pick(p, "title")) + "</span><time>" + esc(fmtDate(p.date, true)) + "</time></a></li>";
-      }).join("");
-    }
     getJSON("blog/posts.json").then(function (d) { posts = d; renderPosts(); })
       .catch(function () { posts = []; renderPosts(); });
-    getJSON("leetcode/problems.json").then(function (d) { probs = d.problems || []; renderLC(); })
-      .catch(function () { probs = []; renderLC(); });
-    langListeners.push(function () { renderPosts(); renderLC(); });
+    langListeners.push(renderPosts);
   })();
 
   /* ---------------- Hero network: ring all-reduce across clusters ---------------- */
   (function () {
     var canvas = document.getElementById("net");
     if (!canvas || !canvas.getContext) return;
+    if (window.FluidHero && window.FluidHero.active) return; // the fluid sim owns the hero
     var ctx = canvas.getContext("2d");
     var hero = canvas.parentElement;
     var W = 0, H = 0, clusters = [], links = [], packets = [], col = {};
