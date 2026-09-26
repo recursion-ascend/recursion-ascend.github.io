@@ -272,6 +272,7 @@
       { g: "nav", icon: "hash", en: "Teaching, Awards & Skills", zh: "教学、奖项与技能", run: function () { go("#more"); } },
       { g: "nav", icon: "hash", en: "Contact", zh: "联系我", run: function () { go("#contact"); } },
       { g: "nav", icon: "doc", en: "Blog", zh: "博客", kw: "posts writing notes 文章", run: function () { window.location.href = ROOT + "blog/"; } },
+      { g: "nav", icon: "doc", en: "Gallery", zh: "相册", kw: "photos photography pictures 照片 摄影", run: function () { window.location.href = ROOT + "gallery/"; } },
       { g: "actions", icon: "bolt", en: "切换到中文", zh: "Switch to English", kw: "language lang 语言 中文 english", run: function () { setLang(lang() === "zh" ? "en" : "zh"); } },
       { g: "actions", icon: "bolt", en: "Toggle dark / light theme", zh: "切换深色 / 浅色主题", kw: "theme dark light 主题", run: function () { setTheme(theme() === "dark" ? "light" : "dark"); } },
       { g: "actions", icon: "bolt", en: "Copy email address", zh: "复制邮箱地址", kw: "email mail contact 邮箱", run: copyEmail },

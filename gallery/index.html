@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" data-lang="en" data-root="../" data-title-en="Blog — Bowen Su" data-title-zh="博客 — Bowen Su">
+<html lang="en" data-lang="en" data-root="../" data-title-en="Gallery — Bowen Su" data-title-zh="相册 — Bowen Su">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blog — Bowen Su</title>
-  <meta name="description" content="Notes on AI systems, HPC and mathematics by Bowen Su.">
+  <title>Gallery — Bowen Su</title>
+  <meta name="description" content="Photos by Bowen Su.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%230a0c0d'/><text x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-style='italic' font-size='32' fill='%234fd1b9'>BS</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,8 +32,8 @@
     <a class="brand" href="../" aria-label="Home"><span>B</span><i>S</i></a>
     <nav class="nav-links sub" aria-label="Pages">
       <a href="../"><span class="en">Home</span><span class="zh" lang="zh-CN">主页</span></a>
-      <a href="../blog/" aria-current="page"><span class="en">Blog</span><span class="zh" lang="zh-CN">博客</span></a>
-      <a href="../gallery/"><span class="en">Gallery</span><span class="zh" lang="zh-CN">相册</span></a>
+      <a href="../blog/"><span class="en">Blog</span><span class="zh" lang="zh-CN">博客</span></a>
+      <a href="../gallery/" aria-current="page"><span class="en">Gallery</span><span class="zh" lang="zh-CN">相册</span></a>
     </nav>
     <div class="nav-actions">
       <button class="kbd-btn" id="palette-open" type="button" aria-label="Open command menu">
@@ -53,21 +53,39 @@
   <main class="page">
     <div class="wrap">
       <header class="page-head">
-        <p class="eyebrow mono"><span class="dot"></span><span class="en">Writing</span><span class="zh" lang="zh-CN">写作</span></p>
-        <h1 class="page-title"><span class="en">The <em>Blog</em></span><span class="zh" lang="zh-CN"><em>博客</em></span></h1>
+        <p class="eyebrow mono"><span class="dot"></span><span class="en">Photography</span><span class="zh" lang="zh-CN">摄影</span></p>
+        <h1 class="page-title"><span class="en">The <em>Gallery</em></span><span class="zh" lang="zh-CN"><em>相册</em></span></h1>
         <p class="page-sub">
-          <span class="en">Notes on AI systems, high-performance computing, and the mathematics underneath.</span>
-          <span class="zh" lang="zh-CN">关于 AI 系统、高性能计算，以及背后那些数学的笔记。</span>
+          <span class="en">Places, people and light I want to remember.</span>
+          <span class="zh" lang="zh-CN">记录走过的地方、遇见的人和光。</span>
         </p>
       </header>
-      <div class="toolbar">
-        <label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg><input id="q" type="search" autocomplete="off" aria-label="Search posts"></label>
-      </div>
-      <div class="tag-row" id="tags"></div>
-      <ul class="post-list" id="post-list"></ul>
+      <div class="tag-row" id="albums" hidden></div>
+      <div class="justified" id="grid" aria-live="polite"></div>
       <p class="state-msg" id="state" hidden></p>
     </div>
   </main>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+    <button class="lb-btn lb-close" id="lb-close" type="button" aria-label="Close">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+    <button class="lb-btn lb-prev" id="lb-prev" type="button" aria-label="Previous photo">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <figure class="lb-figure">
+      <img id="lb-img" alt="">
+      <figcaption>
+        <span id="lb-cap"></span>
+        <span class="lb-loc" id="lb-loc" hidden></span>
+        <span class="mono" id="lb-meta"></span>
+      </figcaption>
+    </figure>
+    <button class="lb-btn lb-next" id="lb-next" type="button" aria-label="Next photo">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+    <span class="lb-count mono" id="lb-count"></span>
+  </div>
 
   <footer class="footer">
     <div class="wrap">
@@ -94,6 +112,6 @@
   <div class="toast mono" id="toast" role="status" aria-live="polite"></div>
 
   <script src="../main.js"></script>
-  <script src="../assets/blog.js"></script>
+  <script src="../assets/gallery.js"></script>
 </body>
 </html>

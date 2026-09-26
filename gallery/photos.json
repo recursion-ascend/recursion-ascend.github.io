@@ -1,0 +1,96 @@
+[
+  {
+    "name": "demo-01",
+    "w": 1600,
+    "h": 1067,
+    "color": "#5e4f4e",
+    "date": null,
+    "album": "Sample A",
+    "caption": "Sample image — replace with your photo",
+    "caption_zh": "示例图片——请替换成你的照片",
+    "location": "Example place",
+    "location_zh": "示例地点"
+  },
+  {
+    "name": "demo-03",
+    "w": 1600,
+    "h": 1200,
+    "color": "#594d77",
+    "date": null,
+    "album": "Sample A",
+    "caption": "Sample image — replace with your photo",
+    "caption_zh": "示例图片——请替换成你的照片"
+  },
+  {
+    "name": "demo-05",
+    "w": 1600,
+    "h": 900,
+    "color": "#6d494e",
+    "date": null,
+    "album": "Sample A",
+    "caption": "Sample image — replace with your photo",
+    "caption_zh": "示例图片——请替换成你的照片"
+  },
+  {
+    "name": "demo-07",
+    "w": 1600,
+    "h": 1067,
+    "color": "#272f4f",
+    "date": null,
+    "album": "Sample A",
+    "caption": "Sample image — replace with your photo",
+    "caption_zh": "示例图片——请替换成你的照片"
+  },
+  {
+    "name": "demo-09",
+    "w": 1100,
+    "h": 1500,
+    "color": "#6c5064",
+    "date": null,
+    "album": "Sample A",
+    "caption": "Sample image — replace with your photo",
+    "caption_zh": "示例图片——请替换成你的照片"
+  },
+  {
+    "name": "demo-02",
+    "w": 1067,
+    "h": 1600,
+    "color": "#35615c",
+    "date": null,
+    "album": "Sample B",
+    "caption": "Sample image — replace with your photo",
+    "caption_zh": "示例图片——请替换成你的照片",
+    "location": "Example place",
+    "location_zh": "示例地点"
+  },
+  {
+    "name": "demo-04",
+    "w": 1400,
+    "h": 1400,
+    "color": "#425c74",
+    "date": null,
+    "album": "Sample B",
+    "caption": "Sample image — replace with your photo",
+    "caption_zh": "示例图片——请替换成你的照片"
+  },
+  {
+    "name": "demo-06",
+    "w": 1200,
+    "h": 1600,
+    "color": "#4f5a55",
+    "date": null,
+    "album": "Sample B",
+    "caption": "Sample image — replace with your photo",
+    "caption_zh": "示例图片——请替换成你的照片"
+  },
+  {
+    "name": "demo-08",
+    "w": 1600,
+    "h": 1000,
+    "color": "#53664a",
+    "date": null,
+    "album": "Sample B",
+    "caption": "Sample image — replace with your photo",
+    "caption_zh": "示例图片——请替换成你的照片"
+  }
+]

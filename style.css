@@ -819,3 +819,77 @@ html[data-lang="zh"] .prose, .prose:lang(zh) { line-height: 1.9; }
 #research .more-link .n { margin-right: 4px; }
 #research .research-phd { margin-top: 56px; }
 @media (max-width: 980px) { .cards-2 { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- Gallery ---------- */
+.justified { display: flex; flex-wrap: wrap; gap: 8px; }
+.tile {
+  position: relative; display: block; overflow: hidden; border-radius: 10px;
+  background: rgba(var(--ink-rgb), .06); flex: none; cursor: zoom-in;
+}
+.tile img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  opacity: 0; transform: scale(1.02);
+  transition: opacity .5s ease, transform .6s cubic-bezier(.2,.7,.2,1);
+}
+.tile img.loaded { opacity: 1; transform: none; }
+.tile:hover img.loaded { transform: scale(1.04); }
+.tile-cap {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 28px 14px 12px;
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 10px;
+  color: #fff; font-size: 14px; line-height: 1.35;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,.62));
+  opacity: 0; transform: translateY(6px); transition: opacity .25s, transform .25s;
+}
+.tile-cap small { font-size: 11px; opacity: .8; white-space: nowrap; }
+.tile:hover .tile-cap, .tile:focus-visible .tile-cap { opacity: 1; transform: none; }
+@media (hover: none) { .tile-cap { display: none; } }
+.state-msg code { font-family: var(--mono); font-size: .9em; padding: .1em .4em; border-radius: 6px; background: rgba(var(--ink-rgb), .07); }
+
+.lightbox {
+  position: fixed; inset: 0; z-index: 110;
+  display: grid; grid-template-columns: 72px minmax(0, 1fr) 72px; align-items: center;
+  background: rgba(8, 10, 11, .94);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  animation: fade .2s ease; touch-action: pan-y;
+}
+.lightbox[hidden] { display: none; }
+.lb-figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 14px; min-width: 0; pointer-events: none; }
+.lb-figure img {
+  max-width: 100%; max-height: calc(100vh - 150px); max-height: calc(100svh - 150px);
+  border-radius: 6px; box-shadow: 0 30px 80px -20px rgba(0,0,0,.8);
+  opacity: 0; transition: opacity .3s ease; pointer-events: auto;
+}
+.lb-figure img.loaded { opacity: 1; }
+.lb-figure figcaption { display: flex; flex-direction: column; align-items: center; gap: 4px; color: #eceff0; text-align: center; font-size: 15px; padding: 0 12px; }
+.lb-figure figcaption .mono { font-size: 12px; color: #9ba5a9; }
+.lb-btn {
+  width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; justify-self: center;
+  border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.06); color: #eceff0; cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+.lb-btn:hover { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.3); }
+.lb-btn svg { width: 20px; height: 20px; }
+.lb-close { position: absolute; top: 18px; right: 18px; }
+.lb-count { position: absolute; top: 30px; left: 24px; font-size: 12px; color: #9ba5a9; }
+@media (max-width: 640px) {
+  .lightbox { grid-template-columns: minmax(0, 1fr); padding: 0 8px; }
+  .lb-prev, .lb-next { display: none; }
+  .justified { gap: 4px; }
+  .tile { border-radius: 6px; }
+}
+
+/* ---------- Gallery: place labels ---------- */
+.tile-cap { flex-direction: column; align-items: stretch; justify-content: flex-end; gap: 4px; }
+.tile-cap .cap-main { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; }
+.cap-loc, .lb-loc { display: inline-flex; align-items: center; gap: 5px; min-width: 0; }
+.cap-loc { font-size: 12px; opacity: .92; }
+.cap-loc span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cap-loc svg, .lb-loc svg { width: 13px; height: 13px; flex-shrink: 0; stroke-width: 2; }
+/* place stays visible; caption + date appear on hover */
+.tile.has-loc .tile-cap { opacity: 1; transform: none; background: linear-gradient(180deg, transparent, rgba(0,0,0,.5)); padding-top: 22px; }
+.tile.has-loc .cap-main { max-height: 0; opacity: 0; overflow: hidden; transition: max-height .25s, opacity .25s; }
+.tile.has-loc:hover .cap-main, .tile.has-loc:focus-visible .cap-main { max-height: 60px; opacity: 1; }
+.tile.has-loc:hover .tile-cap { background: linear-gradient(180deg, transparent, rgba(0,0,0,.65)); }
+@media (hover: none) { .tile.has-loc .tile-cap { display: flex; } }
+.lb-loc { font-size: 14px; color: #cfd6d8; }
+.lb-loc[hidden] { display: none; }
