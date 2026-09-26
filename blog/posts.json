@@ -1,0 +1,11 @@
+[
+  {
+    "slug": "hello-world",
+    "title": "Hello, World: How This Blog Works",
+    "title_zh": "Hello, World：这个博客怎么写",
+    "date": "2026-09-26",
+    "tags": ["meta"],
+    "summary": "A template post showing Markdown, math, code and tables — and how to add a new post.",
+    "summary_zh": "示例文章：演示 Markdown、公式、代码与表格，以及如何新增一篇文章。"
+  }
+]

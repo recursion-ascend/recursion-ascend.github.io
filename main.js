@@ -32,19 +32,26 @@
   function lang() { return root.getAttribute("data-lang") === "zh" ? "zh" : "en"; }
   function t(key) { return I18N[lang()][key]; }
 
+  // Sub-pages live one folder down and set data-root="../" on <html>.
+  var ROOT = root.getAttribute("data-root") || "";
+  var titles = {
+    en: root.getAttribute("data-title-en") || I18N.en.title,
+    zh: root.getAttribute("data-title-zh") || I18N.zh.title
+  };
+
   /* ---------------- Language ---------------- */
   var langListeners = [];
   function setLang(l) {
     root.setAttribute("data-lang", l);
     root.lang = l === "zh" ? "zh-CN" : "en";
-    document.title = I18N[l].title;
+    document.title = titles[l];
     store.set("lang", l);
     langListeners.forEach(function (fn) { fn(l); });
   }
   document.getElementById("lang-toggle").addEventListener("click", function () {
     setLang(lang() === "zh" ? "en" : "zh");
   });
-  document.title = t("title");
+  document.title = titles[lang()];
 
   /* ---------------- Theme ---------------- */
   var themeListeners = [];
@@ -64,10 +71,95 @@
     darkQuery.addEventListener("change", function () { themeListeners.forEach(function (fn) { fn(theme()); }); });
   }
 
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  // "2026-09-26" -> "Sep 26, 2026" / "2026年9月26日"
+  function fmtDate(iso, short) {
+    var p = String(iso || "").split("-");
+    if (p.length < 3) return iso || "";
+    var d = new Date(Date.UTC(+p[0], +p[1] - 1, +p[2]));
+    var opts = short ? { month: "short", day: "numeric", timeZone: "UTC" } : { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" };
+    return new Intl.DateTimeFormat(lang() === "zh" ? "zh-CN" : "en-US", opts).format(d);
+  }
+
+  var TAG_ZH = {
+    "Array": "数组", "Hash Table": "哈希表", "String": "字符串", "Two Pointers": "双指针",
+    "Sliding Window": "滑动窗口", "Dynamic Programming": "动态规划", "Binary Search": "二分查找",
+    "Tree": "树", "Binary Tree": "二叉树", "Graph": "图", "Linked List": "链表", "Doubly-Linked List": "双向链表",
+    "Stack": "栈", "Monotonic Stack": "单调栈", "Queue": "队列", "Heap (Priority Queue)": "堆（优先队列）",
+    "Greedy": "贪心", "Depth-First Search": "深度优先搜索", "Breadth-First Search": "广度优先搜索",
+    "Sorting": "排序", "Math": "数学", "Design": "设计", "Backtracking": "回溯", "Bit Manipulation": "位运算",
+    "Matrix": "矩阵", "Prefix Sum": "前缀和", "Union Find": "并查集", "Trie": "字典树", "Recursion": "递归",
+    "Divide and Conquer": "分治", "Simulation": "模拟", "Topological Sort": "拓扑排序", "Shortest Path": "最短路",
+    "Memoization": "记忆化搜索", "Counting": "计数", "Enumeration": "枚举", "Geometry": "几何",
+    "Segment Tree": "线段树", "Binary Indexed Tree": "树状数组", "Interactive": "交互"
+  };
+  var DIFF_ZH = { Easy: "简单", Medium: "中等", Hard: "困难" };
+  function tagName(tag) { return lang() === "zh" && TAG_ZH[tag] ? TAG_ZH[tag] : tag; }
+  function diffName(d) { return lang() === "zh" ? (DIFF_ZH[d] || d) : d; }
+  function pick(obj, key) { return lang() === "zh" && obj[key + "_zh"] ? obj[key + "_zh"] : obj[key]; }
+
+  // Shared floating tooltip for charts.
+  var tipEl = null;
+  function tip(html, x, y) {
+    if (!tipEl) { tipEl = document.createElement("div"); tipEl.className = "viz-tip"; tipEl.setAttribute("role", "tooltip"); document.body.appendChild(tipEl); }
+    if (html == null) { tipEl.classList.remove("show"); return; }
+    tipEl.innerHTML = html;
+    tipEl.style.left = x + "px";
+    tipEl.style.top = y + "px";
+    tipEl.classList.add("show");
+  }
+
+  // Easy / Medium / Hard stacked bar + legend (part-to-whole).
+  var DIFFS = ["Easy", "Medium", "Hard"];
+  function diffBar(barEl, legendEl, problems) {
+    var n = { Easy: 0, Medium: 0, Hard: 0 };
+    problems.forEach(function (p) { if (n[p.difficulty] != null) n[p.difficulty]++; });
+    var total = problems.length;
+    barEl.innerHTML = "";
+    barEl.classList.toggle("empty", total === 0);
+    DIFFS.forEach(function (d) {
+      if (!n[d]) return;
+      var seg = document.createElement("span");
+      seg.className = d;
+      seg.style.flex = n[d] + " 1 0";
+      seg.addEventListener("pointermove", function () {
+        var r = seg.getBoundingClientRect();
+        tip("<b>" + esc(diffName(d)) + "</b> · " + n[d] + " <small>(" + Math.round(n[d] / total * 100) + "%)</small>", r.left + r.width / 2, r.top);
+      });
+      seg.addEventListener("pointerleave", function () { tip(null); });
+      barEl.appendChild(seg);
+    });
+    legendEl.innerHTML = DIFFS.map(function (d) {
+      return '<li><i class="ddot ' + d + '"></i>' + esc(diffName(d)) + " <b>" + n[d] + "</b></li>";
+    }).join("");
+    return n;
+  }
+
+  function getJSON(path) {
+    return fetch(ROOT + path, { cache: "no-cache" }).then(function (r) {
+      if (!r.ok) throw new Error(r.status + " " + path);
+      return r.json();
+    });
+  }
+
+  window.Site = {
+    root: ROOT, lang: lang, esc: esc, fmtDate: fmtDate, tagName: tagName, diffName: diffName, pick: pick,
+    tip: tip, diffBar: diffBar, getJSON: getJSON, reduceMotion: reduceMotion,
+    onLang: function (fn) { langListeners.push(fn); },
+    onTheme: function (fn) { themeListeners.push(fn); },
+    setTitle: function (en, zh) { titles = { en: en, zh: zh || en }; document.title = titles[lang()]; }
+  };
+
   /* ---------------- Toast + copy email ---------------- */
   var toastEl = document.getElementById("toast");
   var toastTimer;
   function toast(msg) {
+    if (!toastEl) return;
     toastEl.textContent = msg;
     toastEl.classList.add("show");
     clearTimeout(toastTimer);
@@ -83,6 +175,7 @@
     }
   }
   document.querySelectorAll(".copy-email").forEach(function (b) { b.addEventListener("click", copyEmail); });
+  window.Site.toast = toast;
 
   /* ---------------- Nav: scrolled state, progress, active link ---------------- */
   var nav = document.getElementById("nav");
@@ -101,6 +194,7 @@
   var navTick = false;
   function updateActive() {
     navTick = false;
+    if (!sections.length) return;
     var line = window.innerHeight * 0.35, id = null;
     sections.forEach(function (s) { if (s.getBoundingClientRect().top <= line) id = s.id; });
     navLinks.forEach(function (a) { a.classList.toggle("active", a.getAttribute("href") === "#" + id); });
@@ -181,6 +275,7 @@
     c.addEventListener("click", function () { applyFilter(f); });
   });
   function applyFilter(f) {
+    if (!divider) return;
     chips.forEach(function (c) { c.classList.toggle("active", c.getAttribute("data-filter") === f); });
     var anyReview = false, any = false;
     pubs.forEach(function (p) {
@@ -200,6 +295,7 @@
     var input = document.getElementById("palette-q");
     var list = document.getElementById("palette-list");
     var opener = document.getElementById("palette-open");
+    if (!pal) return;
     var lastFocus = null, sel = 0, visible = [];
 
     var ICON = {
@@ -211,6 +307,7 @@
     function go(hash) {
       var el = document.querySelector(hash);
       if (el) el.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+      else window.location.href = ROOT + hash;
     }
 
     var items = [
@@ -220,11 +317,13 @@
       { g: "nav", icon: "hash", en: "Experience & Education", zh: "经历与教育", run: function () { go("#experience"); } },
       { g: "nav", icon: "hash", en: "Teaching, Awards & Skills", zh: "教学、奖项与技能", run: function () { go("#more"); } },
       { g: "nav", icon: "hash", en: "Contact", zh: "联系我", run: function () { go("#contact"); } },
+      { g: "nav", icon: "doc", en: "Blog", zh: "博客", kw: "posts writing notes 文章", run: function () { window.location.href = ROOT + "blog/"; } },
+      { g: "nav", icon: "doc", en: "LeetCode", zh: "力扣刷题", kw: "leetcode algorithms problems 题解 算法", run: function () { window.location.href = ROOT + "leetcode/"; } },
       { g: "actions", icon: "bolt", en: "切换到中文", zh: "Switch to English", kw: "language lang 语言 中文 english", run: function () { setLang(lang() === "zh" ? "en" : "zh"); } },
       { g: "actions", icon: "bolt", en: "Toggle dark / light theme", zh: "切换深色 / 浅色主题", kw: "theme dark light 主题", run: function () { setTheme(theme() === "dark" ? "light" : "dark"); } },
       { g: "actions", icon: "bolt", en: "Copy email address", zh: "复制邮箱地址", kw: "email mail contact 邮箱", run: copyEmail },
       { g: "actions", icon: "bolt", en: "Open GitHub", zh: "打开 GitHub", kw: "github code", run: function () { window.location.href = "https://github.com/recursion-ascend"; } },
-      { g: "actions", icon: "bolt", en: "Download CV", zh: "下载简历", kw: "cv resume pdf 简历", run: function () { window.location.href = "cv.pdf"; } }
+      { g: "actions", icon: "bolt", en: "Download CV", zh: "下载简历", kw: "cv resume pdf 简历", run: function () { window.location.href = ROOT + "cv.pdf"; } }
     ];
     pubs.forEach(function (p) {
       var title = p.querySelector(".title").textContent.trim();
@@ -316,6 +415,38 @@
       }
     });
     langListeners.push(function () { if (!pal.hidden) { input.placeholder = t("search"); render(); } });
+  })();
+
+  /* ---------------- Home: latest posts + LeetCode summary ---------------- */
+  (function () {
+    var postsEl = document.getElementById("home-posts");
+    var lcCard = document.getElementById("home-lc");
+    if (!postsEl || !lcCard) return;
+    var posts = null, probs = null;
+    function byDateDesc(a, b) { return String(b.date).localeCompare(String(a.date)); }
+    function renderPosts() {
+      if (!posts) return;
+      var list = posts.slice().sort(byDateDesc).slice(0, 4);
+      postsEl.innerHTML = list.length ? list.map(function (p) {
+        return '<li><a href="blog/post.html?p=' + encodeURIComponent(p.slug) + '"><span>' + esc(pick(p, "title")) +
+          "</span><time>" + esc(fmtDate(p.date)) + "</time></a></li>";
+      }).join("") : '<li class="state-msg"><span class="en">No posts yet.</span><span class="zh" lang="zh-CN">还没有文章。</span></li>';
+    }
+    function renderLC() {
+      if (!probs) return;
+      document.getElementById("home-lc-total").textContent = probs.length;
+      diffBar(document.getElementById("home-lc-bar"), document.getElementById("home-lc-legend"), probs);
+      var recent = probs.slice().sort(byDateDesc).slice(0, 3);
+      document.getElementById("home-lc-recent").innerHTML = recent.map(function (p) {
+        return '<li><a href="leetcode/problem.html?id=' + encodeURIComponent(p.id) + '"><span><i class="ddot ' + esc(p.difficulty) +
+          '"></i> ' + esc(p.id) + ". " + esc(pick(p, "title")) + "</span><time>" + esc(fmtDate(p.date, true)) + "</time></a></li>";
+      }).join("");
+    }
+    getJSON("blog/posts.json").then(function (d) { posts = d; renderPosts(); })
+      .catch(function () { posts = []; renderPosts(); });
+    getJSON("leetcode/problems.json").then(function (d) { probs = d.problems || []; renderLC(); })
+      .catch(function () { probs = []; renderLC(); });
+    langListeners.push(function () { renderPosts(); renderLC(); });
   })();
 
   /* ---------------- Hero network: ring all-reduce across clusters ---------------- */
@@ -590,5 +721,6 @@
     });
   })();
 
-  document.getElementById("year").textContent = new Date().getFullYear();
+  var yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 })();

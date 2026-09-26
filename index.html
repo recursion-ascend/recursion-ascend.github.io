@@ -40,7 +40,8 @@
       <a href="#research"><span class="en">Research</span><span class="zh" lang="zh-CN">研究</span></a>
       <a href="#publications"><span class="en">Publications</span><span class="zh" lang="zh-CN">论文</span></a>
       <a href="#experience"><span class="en">Experience</span><span class="zh" lang="zh-CN">经历</span></a>
-      <a href="#more"><span class="en">More</span><span class="zh" lang="zh-CN">更多</span></a>
+      <a href="blog/"><span class="en">Blog</span><span class="zh" lang="zh-CN">博客</span></a>
+      <a href="leetcode/"><span class="en">LeetCode</span><span class="zh" lang="zh-CN">刷题</span></a>
     </nav>
     <div class="nav-actions">
       <button class="kbd-btn" id="palette-open" type="button" aria-label="Open command menu">
@@ -402,6 +403,30 @@
               <dt class="mono"><span class="en">Systems</span><span class="zh" lang="zh-CN">系统</span></dt>
               <dd><span>Linux</span><span>Docker</span><span>Kubernetes</span><span>Git</span><span class="en">Profiling</span><span class="zh" lang="zh-CN">性能剖析</span></dd>
             </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= BLOG + LEETCODE ================= -->
+    <section id="notes" class="section">
+      <div class="wrap">
+        <h2 class="section-title reveal"><span class="idx mono">06</span><span class="en">Blog &amp; LeetCode</span><span class="zh" lang="zh-CN">博客与刷题</span></h2>
+        <div class="notes-grid">
+          <div class="card spot reveal">
+            <h3 class="card-label mono"><span class="en">Latest posts</span><span class="zh" lang="zh-CN">最新文章</span></h3>
+            <ul class="note-list" id="home-posts"></ul>
+            <a class="more-link" href="blog/"><span class="en">All posts</span><span class="zh" lang="zh-CN">全部文章</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+          <div class="card spot reveal lc-mini" id="home-lc">
+            <h3 class="card-label mono"><span class="en">LeetCode · solved</span><span class="zh" lang="zh-CN">力扣 · 已解决</span></h3>
+            <div class="hero-num" id="home-lc-total">–</div>
+            <div class="diff-bar" id="home-lc-bar" aria-hidden="true"></div>
+            <ul class="diff-legend" id="home-lc-legend"></ul>
+            <ul class="note-list" id="home-lc-recent" style="margin-top:22px"></ul>
+            <a class="more-link" href="leetcode/"><span class="en">All problems</span><span class="zh" lang="zh-CN">全部题目</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </div>
         </div>
       </div>
