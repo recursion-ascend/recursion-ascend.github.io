@@ -60,7 +60,6 @@
   <main id="top">
     <!-- ================= HERO ================= -->
     <section class="hero">
-      <canvas id="fluid" aria-hidden="true"></canvas>
       <canvas id="net" aria-hidden="true"></canvas>
       <div class="hero-inner">
         <p class="eyebrow mono">
@@ -96,13 +95,9 @@
           </button>
         </div>
       </div>
-      <p class="hero-caption mono cap-net" aria-hidden="true">
+      <p class="hero-caption mono" aria-hidden="true">
         <span class="en">fig. 0 — ring all-reduce across accelerator nodes, live</span>
         <span class="zh" lang="zh-CN">图 0 — 加速器节点间的 Ring AllReduce，实时演示</span>
-      </p>
-      <p class="hero-caption mono cap-fluid" aria-hidden="true">
-        <span class="en">fig. 0 — incompressible Navier–Stokes, solved live on your GPU · move the cursor</span>
-        <span class="zh" lang="zh-CN">图 0 — 在你的 GPU 上实时求解不可压缩 Navier–Stokes 方程 · 移动鼠标试试</span>
       </p>
       <a class="scroll-cue" href="#about" aria-label="Scroll down"><span></span></a>
     </section>
@@ -472,7 +467,6 @@
 
   <div class="toast mono" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="assets/fluid.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

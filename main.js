@@ -386,7 +386,6 @@
   (function () {
     var canvas = document.getElementById("net");
     if (!canvas || !canvas.getContext) return;
-    if (window.FluidHero && window.FluidHero.active) return; // the fluid sim owns the hero
     var ctx = canvas.getContext("2d");
     var hero = canvas.parentElement;
     var W = 0, H = 0, clusters = [], links = [], packets = [], col = {};
