@@ -13,7 +13,7 @@
   var I18N = {
     en: {
       title: "Bowen Su — AI Infra & Computational Math",
-      words: ["efficient LLM inference", "collective communication", "MoE systems", "low-rank & sparse algorithms", "robust control & optimization"],
+      words: ["efficient LLM inference", "collective communication", "MoE systems", "HPC & distributed systems"],
       copied: "Email copied to clipboard",
       search: "Search sections, papers, actions…",
       empty: "No results",
@@ -21,7 +21,7 @@
     },
     zh: {
       title: "Bowen Su — AI 基础设施与计算数学",
-      words: ["大模型高效推理", "集合通信优化", "MoE 系统", "低秩与稀疏算法", "鲁棒控制与优化"],
+      words: ["大模型高效推理", "集合通信优化", "MoE 系统", "高性能计算与分布式系统"],
       copied: "邮箱已复制到剪贴板",
       search: "搜索章节、论文、操作…",
       empty: "没有匹配结果",
@@ -220,6 +220,13 @@
     var f = c.getAttribute("data-filter");
     c.querySelector("i").textContent = pubs.filter(function (p) { return matches(p, f); }).length;
     c.addEventListener("click", function () { applyFilter(f); });
+  });
+  document.querySelectorAll("[data-goto-filter]").forEach(function (a) {
+    var f = a.getAttribute("data-goto-filter");
+    var n = pubs.filter(function (p) { return matches(p, f); }).length;
+    a.querySelector(".n").textContent = n;
+    if (n === 1) a.querySelector(".en").textContent = "paper";
+    a.addEventListener("click", function () { applyFilter(f); });
   });
   function applyFilter(f) {
     if (!divider) return;

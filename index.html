@@ -116,16 +116,18 @@
                 and spent 2024 as a research graduate student at <strong>Los Alamos National Laboratory</strong>.
               </p>
               <p class="en">
-                My work sits between numerical mathematics and systems. I like problems where a clean
+                During my Ph.D. I worked on low-rank and tensor methods, control and optimization, and
+                signal processing, imaging and statistics. Across all of it, I like problems where a clean
                 mathematical structure — low rank, sparsity, the geometry of an optimizer — can be turned into
-                an algorithm that runs faster and more reliably on real hardware.
+                an algorithm that runs faster and more reliably on real hardware; today I bring that toolkit
+                to AI infrastructure.
               </p>
               <p class="zh" lang="zh-CN">
                 我目前是<strong>华为技术有限公司</strong>的 AI Infra 研究工程师，致力于在大规模加速器集群上实现大模型的高效训练与推理。
                 2025 年我在<strong>密歇根州立大学</strong>获得应用数学博士学位，2024 年曾在<strong>洛斯阿拉莫斯国家实验室</strong>担任研究生研究员。
               </p>
               <p class="zh" lang="zh-CN">
-                我的工作介于数值数学与计算机系统之间。我尤其喜欢这样一类问题：把清晰的数学结构——低秩、稀疏、优化器的几何——转化为能在真实硬件上跑得更快、更稳的算法。
+                博士期间，我的研究方向是低秩与张量方法、控制与优化，以及信号处理、成像与统计。贯穿其中的，是我最喜欢的一类问题：把清晰的数学结构——低秩、稀疏、优化器的几何——转化为能在真实硬件上跑得更快、更稳的算法。如今我把这套工具用在 AI 基础设施上。
               </p>
             </div>
           </div>
@@ -158,7 +160,8 @@
     <section id="research" class="section">
       <div class="wrap">
         <h2 class="section-title reveal"><span class="idx mono">02</span><span class="en">Research</span><span class="zh" lang="zh-CN">研究方向</span></h2>
-        <div class="cards-3">
+        <h3 class="col-label mono reveal"><span class="en">Now · Huawei</span><span class="zh" lang="zh-CN">现在 · 华为</span></h3>
+        <div class="cards-2">
           <article class="card spot reveal">
             <div class="card-icon">
               <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1.5V4M15 1.5V4M9 20v2.5M15 20v2.5M1.5 9H4M1.5 15H4M20 9h2.5M20 15h2.5"/></svg>
@@ -176,15 +179,45 @@
             <p class="en">Collective algorithms that exploit workload structure — e.g. sparsity-aware AllReduce for irregular scientific workloads.</p>
             <p class="zh" lang="zh-CN">利用负载结构设计集合通信算法，例如面向不规则科学计算负载的稀疏感知 AllReduce。</p>
             <div class="tags mono"><span>NCCL</span><span>HCCL</span><span>AllReduce</span></div>
+            <a class="more-link" href="#publications" data-goto-filter="systems"><span class="n mono"></span><span class="en">papers</span><span class="zh" lang="zh-CN">篇论文</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </article>
+        </div>
+
+        <h3 class="col-label mono reveal research-phd"><span class="en">Ph.D. · Michigan State University</span><span class="zh" lang="zh-CN">博士期间 · 密歇根州立大学</span></h3>
+        <div class="cards-3">
+          <article class="card spot reveal">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/><rect x="3" y="3" width="6" height="6" rx="1" fill="currentColor" stroke="none" opacity=".35"/></svg>
+            </div>
+            <h3><span class="en">Low-Rank &amp; Tensor Methods</span><span class="zh" lang="zh-CN">低秩与张量方法</span></h3>
+            <p class="en">CUR and pseudoskeleton decompositions, matrix and tensor completion under structured sampling, and low-rank structure in neural networks.</p>
+            <p class="zh" lang="zh-CN">CUR 与伪骨架分解、结构化采样下的矩阵与张量补全，以及神经网络中的低秩结构。</p>
+            <div class="tags mono"><span>CUR</span><span>Tensor</span><span>Completion</span></div>
+            <a class="more-link" href="#publications" data-goto-filter="lowrank"><span class="n mono"></span><span class="en">papers</span><span class="zh" lang="zh-CN">篇论文</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </article>
           <article class="card spot reveal">
             <div class="card-icon">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V4M4 20h16"/><path d="M7 16c3-8 6-10 12-11"/><circle cx="11" cy="10.2" r="1.3"/><circle cx="16" cy="6.4" r="1.3"/></svg>
             </div>
-            <h3><span class="en">Computational Math &amp; Learning Theory</span><span class="zh" lang="zh-CN">计算数学与学习理论</span></h3>
-            <p class="en">Low-rank matrix and tensor approximation, sparse recovery, robust control, and the geometry of mirror descent.</p>
-            <p class="zh" lang="zh-CN">低秩矩阵与张量逼近、稀疏恢复、鲁棒控制，以及镜像下降的几何结构。</p>
-            <div class="tags mono"><span>CUR</span><span>Tensor</span><span>LQG</span></div>
+            <h3><span class="en">Control &amp; Optimization</span><span class="zh" lang="zh-CN">控制与优化</span></h3>
+            <p class="en">Sample complexity of output-feedback and distributionally robust LQG control, sparse system identification, and the mirror-descent geometry of preference alignment.</p>
+            <p class="zh" lang="zh-CN">输出反馈与分布鲁棒 LQG 控制的样本复杂度、稀疏系统辨识，以及偏好对齐的镜像下降几何。</p>
+            <div class="tags mono"><span>LQG</span><span>SINDy</span><span>Mirror descent</span></div>
+            <a class="more-link" href="#publications" data-goto-filter="control"><span class="n mono"></span><span class="en">papers</span><span class="zh" lang="zh-CN">篇论文</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </article>
+          <article class="card spot reveal">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12h3l2.5-6 4 13 3.5-10 2.5 5H22"/></svg>
+            </div>
+            <h3><span class="en">Signal, Imaging &amp; Statistics</span><span class="zh" lang="zh-CN">信号、成像与统计</span></h3>
+            <p class="en">Sparse-view CT reconstruction, RIS-aided beamforming, spectrum sharing, and recovery thresholds for sparse discriminant analysis.</p>
+            <p class="zh" lang="zh-CN">稀疏视角 CT 重建、RIS 辅助波束成形、频谱共享，以及稀疏判别分析的恢复阈值。</p>
+            <div class="tags mono"><span>CT</span><span>Beamforming</span><span>Sparse LDA</span></div>
+            <a class="more-link" href="#publications" data-goto-filter="signal"><span class="n mono"></span><span class="en">papers</span><span class="zh" lang="zh-CN">篇论文</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </article>
         </div>
       </div>
