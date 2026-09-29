@@ -21,10 +21,11 @@
   function caption(p) { return S.pick(p, "caption") || ""; }
   function place(p) { return S.pick(p, "location") || ""; }
   function meta(p) {
-    var parts = [];
-    if (p.date) parts.push(S.esc(S.fmtDate(p.date)));
+    var parts = [S.esc(p.name) + ".jpg"];
+    if (p.w && p.h) parts.push(p.w + "×" + p.h);
+    if (p.date) parts.push(S.esc(p.date));
     if (p.album) parts.push(S.esc(p.album));
-    return parts.join(" · ");
+    return parts.join("  ");
   }
 
   /* ---------- justified rows ---------- */
@@ -90,10 +91,10 @@
     albumsEl.hidden = order.length < 2;
     if (albumsEl.hidden) return;
     albumsEl.innerHTML = '<button class="chip' + (album ? "" : " active") + '" data-album="">' +
-      '<span class="en">All</span><span class="zh" lang="zh-CN">全部</span><i class="mono">' + photos.length + "</i></button>" +
+      "--all<i>" + photos.length + "</i></button>" +
       order.map(function (a) {
         return '<button class="chip' + (album === a ? " active" : "") + '" data-album="' + S.esc(a) + '">' + S.esc(a) +
-          '<i class="mono">' + counts[a] + "</i></button>";
+          "<i>" + counts[a] + "</i></button>";
       }).join("");
   }
   albumsEl.addEventListener("click", function (e) {
@@ -172,8 +173,16 @@
   });
 
   /* ---------- boot ---------- */
-  var rt;
-  window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(layout, 120); });
+  // Re-flow whenever the grid's width changes (window resize, web font swap, …).
+  var lastW = 0;
+  if ("ResizeObserver" in window) {
+    new ResizeObserver(function () {
+      if (grid.clientWidth !== lastW) { lastW = grid.clientWidth; layout(); }
+    }).observe(grid);
+  } else {
+    var rt;
+    window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(layout, 120); });
+  }
   S.onLang(function () {
     render();
     if (!lb.hidden) show(cur);

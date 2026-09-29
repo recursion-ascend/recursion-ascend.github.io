@@ -1,23 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" data-lang="en">
+<html lang="en" data-lang="en" data-page="home">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bowen Su — AI Infra &amp; Computational Math</title>
-  <meta name="description" content="Bowen Su — AI Infra Research Engineer at Huawei. Ph.D. in Applied Mathematics, Michigan State University. Large-scale AI systems, HPC, computational mathematics.">
-  <meta property="og:title" content="Bowen Su">
-  <meta property="og:description" content="AI Infra Research Engineer · Large-scale AI systems, HPC, computational mathematics">
-  <meta name="theme-color" content="#0a0c0d">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%230a0c0d'/><text x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-style='italic' font-size='32' fill='%234fd1b9'>BS</text></svg>">
+  <title>bowen-su(1)</title>
+  <meta name="description" content="Bowen Su — AI Infra Research Engineer at Huawei. Ph.D. in Applied Mathematics, Michigan State University. Large-scale AI systems, collective communication, computational mathematics.">
+  <meta property="og:title" content="bowen-su(1)">
+  <meta property="og:description" content="AI infra research engineer · collective communication · applied math">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%230f0f0d'/><text x='8' y='44' font-family='monospace' font-size='34' fill='%23f2a93b'>$_</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script>
-    // Set theme + language before first paint.
     (function () {
       var d = document.documentElement;
-      d.classList.add("js");
       try {
         var t = localStorage.getItem("theme");
         if (t === "light" || t === "dark") d.setAttribute("data-theme", t);
@@ -30,477 +27,378 @@
   </script>
 </head>
 <body>
-  <div class="progress" aria-hidden="true"></div>
+<div class="term">
 
-  <!-- ================= NAV ================= -->
-  <header class="nav" id="nav">
-    <a class="brand" href="#top" aria-label="Home"><span>B</span><i>S</i></a>
-    <nav class="nav-links" aria-label="Sections">
-      <a href="#about"><span class="en">About</span><span class="zh" lang="zh-CN">关于</span></a>
-      <a href="#research"><span class="en">Research</span><span class="zh" lang="zh-CN">研究</span></a>
-      <a href="#publications"><span class="en">Publications</span><span class="zh" lang="zh-CN">论文</span></a>
-      <a href="#experience"><span class="en">Experience</span><span class="zh" lang="zh-CN">经历</span></a>
-      <a href="blog/"><span class="en">Blog</span><span class="zh" lang="zh-CN">博客</span></a>
-      <a href="gallery/"><span class="en">Gallery</span><span class="zh" lang="zh-CN">相册</span></a>
-    </nav>
-    <div class="nav-actions">
-      <button class="kbd-btn" id="palette-open" type="button" aria-label="Open command menu">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
-        <span class="kbd-hint"><kbd>⌘</kbd><kbd>K</kbd></span>
-      </button>
-      <button class="lang-switch" id="lang-toggle" type="button" aria-label="Switch language / 切换语言">
-        <span class="opt opt-en">EN</span><span class="opt opt-zh">中</span><span class="thumb" aria-hidden="true"></span>
-      </button>
-      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle dark mode">
-        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1.5 12h3M19.5 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
-      </button>
-    </div>
+  <header class="man-head">
+    <span>BOWEN-SU(1)</span>
+    <span class="mh-mid"><span class="en">User Commands</span><span class="zh" lang="zh-CN">用户命令手册</span></span>
+    <span>BOWEN-SU(1)</span>
   </header>
 
-  <main id="top">
-    <!-- ================= HERO ================= -->
-    <section class="hero">
-      <canvas id="net" aria-hidden="true"></canvas>
-      <div class="hero-inner">
-        <p class="eyebrow mono">
-          <span class="dot"></span>
-          <span class="en">AI Infra · HPC · Computational Math</span>
-          <span class="zh" lang="zh-CN">AI 基础设施 · 高性能计算 · 计算数学</span>
-        </p>
-        <h1 class="hero-name">Bowen <em>Su</em></h1>
-        <p class="hero-lede">
-          <span class="en">Making large models run faster — with mathematics.</span>
-          <span class="zh" lang="zh-CN">用数学，让大模型跑得更快。</span>
-        </p>
-        <p class="hero-typed mono">
-          <span class="prompt">$</span>
-          <span class="en">working_on</span><span class="zh" lang="zh-CN">正在研究</span>
-          <span class="arrow">→</span>
-          <span id="typed" class="typed"></span><span class="caret" aria-hidden="true"></span>
-        </p>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="#publications">
-            <span class="en">View publications</span><span class="zh" lang="zh-CN">查看论文</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a class="btn" href="cv.pdf">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-4.5-4.5M12 15l4.5-4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-            <span class="en">CV</span><span class="zh" lang="zh-CN">简历</span>
-          </a>
-          <a class="btn btn-ghost" href="https://github.com/recursion-ascend" aria-label="GitHub">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
-          </a>
-          <button class="btn btn-ghost copy-email" type="button" aria-label="Copy email">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg>
-          </button>
-        </div>
+  <p class="prompt-line"><span class="ps1"><span class="u">recursion@ascend</span><span class="d">:</span><span class="p">~</span><span class="d">$</span></span> ls</p>
+  <nav class="ls" aria-label="Site">
+    <a href="#description">about.md</a>
+    <a class="dir" href="#options">research/</a>
+    <a href="#publications">publications.bib</a>
+    <a href="#log">CHANGELOG</a>
+    <a href="#experience">experience.csv</a>
+    <a class="dir" href="blog/">blog/</a>
+    <a class="dir" href="gallery/">gallery/</a>
+    <a class="doc" href="cv.pdf">cv.pdf</a>
+  </nav>
+  <p class="prompt-line"><span class="ps1"><span class="u">recursion@ascend</span><span class="d">:</span><span class="p">~</span><span class="d">$</span></span> man bowen-su<span class="cursor" aria-hidden="true"></span></p>
+
+  <main>
+    <section id="name" data-sec="NAME">
+      <h2 class="sh">NAME</h2>
+      <div class="in">
+        <p><b>bowen-su</b> —
+          <span class="en">AI infra research engineer; applied mathematician by training.</span>
+          <span class="zh" lang="zh-CN">AI Infra 研究工程师，应用数学出身。</span></p>
       </div>
-      <p class="hero-caption mono" aria-hidden="true">
-        <span class="en">fig. 0 — ring all-reduce across accelerator nodes, live</span>
-        <span class="zh" lang="zh-CN">图 0 — 加速器节点间的 Ring AllReduce，实时演示</span>
-      </p>
-      <a class="scroll-cue" href="#about" aria-label="Scroll down"><span></span></a>
     </section>
 
-    <!-- ================= ABOUT ================= -->
-    <section id="about" class="section">
-      <div class="wrap">
-        <div class="about-grid">
-          <div class="reveal">
-            <h2 class="section-title"><span class="idx mono">01</span><span class="en">About</span><span class="zh" lang="zh-CN">关于我</span></h2>
-            <div class="bio">
-              <p class="en">
-                I am an AI Infra Research Engineer at <strong>Huawei Technologies</strong>, working on
-                efficient large-model training and inference on large-scale accelerator clusters.
-                I received my Ph.D. in Applied Mathematics from <strong>Michigan State University</strong> in 2025,
-                and spent 2024 as a research graduate student at <strong>Los Alamos National Laboratory</strong>.
-              </p>
-              <p class="en">
-                During my Ph.D. I worked on low-rank and tensor methods, control and optimization, and
-                signal processing, imaging and statistics. Across all of it, I like problems where a clean
-                mathematical structure — low rank, sparsity, the geometry of an optimizer — can be turned into
-                an algorithm that runs faster and more reliably on real hardware; today I bring that toolkit
-                to AI infrastructure.
-              </p>
-              <p class="zh" lang="zh-CN">
-                我目前是<strong>华为技术有限公司</strong>的 AI Infra 研究工程师，致力于在大规模加速器集群上实现大模型的高效训练与推理。
-                2025 年我在<strong>密歇根州立大学</strong>获得应用数学博士学位，2024 年曾在<strong>洛斯阿拉莫斯国家实验室</strong>担任研究生研究员。
-              </p>
-              <p class="zh" lang="zh-CN">
-                博士期间，我的研究方向是低秩与张量方法、控制与优化，以及信号处理、成像与统计。贯穿其中的，是我最喜欢的一类问题：把清晰的数学结构——低秩、稀疏、优化器的几何——转化为能在真实硬件上跑得更快、更稳的算法。如今我把这套工具用在 AI 基础设施上。
-              </p>
-            </div>
+    <section id="synopsis" data-sec="SYNOPSIS">
+      <h2 class="sh">SYNOPSIS</h2>
+      <div class="in synopsis">
+        <p><span class="syn-cmd">bowen-su</span>
+          <span class="grp"><span class="opt">[--now=</span>ai-infra@huawei<span class="opt">]</span></span>
+          <span class="grp"><span class="opt">[--phd=</span>applied-math@msu<span class="opt">]</span></span>
+          <span class="grp"><span class="opt">[--lang=</span><button type="button" data-set-lang="en">en</button><span class="opt">|</span><button type="button" data-set-lang="zh">zh</button><span class="opt">]</span></span>
+          <span class="grp"><span class="opt">[--theme=</span><button type="button" data-set-theme="dark">dark</button><span class="opt">|</span><button type="button" data-set-theme="light">light</button><span class="opt">]</span></span></p>
+      </div>
+    </section>
+
+    <section id="description" data-sec="DESCRIPTION">
+      <h2 class="sh">DESCRIPTION<span class="gloss zh" lang="zh-CN">简介</span></h2>
+      <div class="in">
+        <p class="en">
+          I am an AI Infra Research Engineer at <b>Huawei Technologies</b>, working on efficient
+          large-model training and inference on large-scale accelerator clusters. I received my Ph.D. in
+          Applied Mathematics from <b>Michigan State University</b> in 2025, and spent 2024 as a research
+          graduate student at <b>Los Alamos National Laboratory</b>.
+        </p>
+        <p class="en">
+          During my Ph.D. I worked on low-rank and tensor methods, control and optimization, and signal
+          processing, imaging and statistics. Across all of it, I like problems where a clean mathematical
+          structure — low rank, sparsity, the geometry of an optimizer — can be turned into an algorithm
+          that runs faster and more reliably on real hardware; today I bring that toolkit to AI infrastructure.
+        </p>
+        <p class="zh" lang="zh-CN">
+          我目前是<b>华为技术有限公司</b>的 AI Infra 研究工程师，致力于在大规模加速器集群上实现大模型的高效训练与推理。
+          2025 年我在<b>密歇根州立大学</b>获得应用数学博士学位，2024 年曾在<b>洛斯阿拉莫斯国家实验室</b>担任研究生研究员。
+        </p>
+        <p class="zh" lang="zh-CN">
+          博士期间，我的研究方向是低秩与张量方法、控制与优化，以及信号处理、成像与统计。贯穿其中的，是我最喜欢的一类问题：把清晰的数学结构——低秩、稀疏、优化器的几何——转化为能在真实硬件上跑得更快、更稳的算法。如今我把这套工具用在 AI 基础设施上。
+        </p>
+      </div>
+    </section>
+
+    <section id="examples" data-sec="EXAMPLES">
+      <h2 class="sh">EXAMPLES<span class="gloss zh" lang="zh-CN">示例</span></h2>
+      <div class="in">
+        <p><span class="dim">$</span> bowen-su --demo ring-allreduce -p <span id="ring-p-label">8</span></p>
+        <div class="panel" id="ring" aria-label="Ring all-reduce simulation">
+          <span class="panel-title">ring-allreduce</span>
+          <div class="panel-status">
+            <span><span id="ring-phase" class="phase-rs">reduce-scatter</span> · step <b id="ring-step">00</b>/<span id="ring-total">14</span></span>
+            <span id="ring-sent">sent/rank 0/8·n</span>
           </div>
-
-          <aside class="news card reveal">
-            <h3 class="card-label mono"><span class="pulse"></span><span class="en">Latest</span><span class="zh" lang="zh-CN">最新动态</span></h3>
-            <ul>
-              <li><time class="mono">2026</time>
-                <span class="en">Paper on preference alignment geometry accepted in <em>IEEE Control Systems Letters</em>.</span>
-                <span class="zh" lang="zh-CN">偏好对齐几何视角的论文被 <em>IEEE Control Systems Letters</em> 接收。</span></li>
-              <li><time class="mono">2025.08</time>
-                <span class="en">Joined Huawei as an AI Infra Research Engineer.</span>
-                <span class="zh" lang="zh-CN">加入华为，任 AI Infra 研究工程师。</span></li>
-              <li><time class="mono">2025.07</time>
-                <span class="en">Ph.D. in Applied Mathematics, Michigan State University.</span>
-                <span class="zh" lang="zh-CN">获密歇根州立大学应用数学博士学位。</span></li>
-              <li><time class="mono">2025</time>
-                <span class="en">Papers at IEEE ICTAI, IEEE BigDataService, and AMLDS.</span>
-                <span class="zh" lang="zh-CN">论文发表于 IEEE ICTAI、IEEE BigDataService 与 AMLDS。</span></li>
-              <li><time class="mono">2024.05</time>
-                <span class="en">Research graduate student at Los Alamos National Laboratory.</span>
-                <span class="zh" lang="zh-CN">赴洛斯阿拉莫斯国家实验室任研究生研究员。</span></li>
-            </ul>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= RESEARCH ================= -->
-    <section id="research" class="section">
-      <div class="wrap">
-        <h2 class="section-title reveal"><span class="idx mono">02</span><span class="en">Research</span><span class="zh" lang="zh-CN">研究方向</span></h2>
-        <h3 class="col-label mono reveal"><span class="en">Now · Huawei</span><span class="zh" lang="zh-CN">现在 · 华为</span></h3>
-        <div class="cards-2">
-          <article class="card spot reveal">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1.5V4M15 1.5V4M9 20v2.5M15 20v2.5M1.5 9H4M1.5 15H4M20 9h2.5M20 15h2.5"/></svg>
-            </div>
-            <h3><span class="en">Efficient LLM Systems</span><span class="zh" lang="zh-CN">大模型高效系统</span></h3>
-            <p class="en">Training and serving large models on accelerator clusters: inference engines, mixture-of-experts, and overlapping communication with computation.</p>
-            <p class="zh" lang="zh-CN">面向加速器集群的大模型训练与推理：推理引擎、混合专家模型（MoE），以及通信与计算的重叠优化。</p>
-            <div class="tags mono"><span>vLLM</span><span>SGLang</span><span>MoE</span></div>
-          </article>
-          <article class="card spot reveal">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4" r="2"/><circle cx="20" cy="12" r="2"/><circle cx="12" cy="20" r="2"/><circle cx="4" cy="12" r="2"/><path d="M13.5 5.5 18.5 10.5M18.5 13.5 13.5 18.5M10.5 18.5 5.5 13.5M5.5 10.5 10.5 5.5"/></svg>
-            </div>
-            <h3><span class="en">HPC &amp; Collective Communication</span><span class="zh" lang="zh-CN">高性能计算与集合通信</span></h3>
-            <p class="en">Collective algorithms that exploit workload structure — e.g. sparsity-aware AllReduce for irregular scientific workloads.</p>
-            <p class="zh" lang="zh-CN">利用负载结构设计集合通信算法，例如面向不规则科学计算负载的稀疏感知 AllReduce。</p>
-            <div class="tags mono"><span>NCCL</span><span>HCCL</span><span>AllReduce</span></div>
-            <a class="more-link" href="#publications" data-goto-filter="systems"><span class="n mono"></span><span class="en">papers</span><span class="zh" lang="zh-CN">篇论文</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          </article>
-        </div>
-
-        <h3 class="col-label mono reveal research-phd"><span class="en">Ph.D. · Michigan State University</span><span class="zh" lang="zh-CN">博士期间 · 密歇根州立大学</span></h3>
-        <div class="cards-3">
-          <article class="card spot reveal">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/><rect x="3" y="3" width="6" height="6" rx="1" fill="currentColor" stroke="none" opacity=".35"/></svg>
-            </div>
-            <h3><span class="en">Low-Rank &amp; Tensor Methods</span><span class="zh" lang="zh-CN">低秩与张量方法</span></h3>
-            <p class="en">CUR and pseudoskeleton decompositions, matrix and tensor completion under structured sampling, and low-rank structure in neural networks.</p>
-            <p class="zh" lang="zh-CN">CUR 与伪骨架分解、结构化采样下的矩阵与张量补全，以及神经网络中的低秩结构。</p>
-            <div class="tags mono"><span>CUR</span><span>Tensor</span><span>Completion</span></div>
-            <a class="more-link" href="#publications" data-goto-filter="lowrank"><span class="n mono"></span><span class="en">papers</span><span class="zh" lang="zh-CN">篇论文</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          </article>
-          <article class="card spot reveal">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V4M4 20h16"/><path d="M7 16c3-8 6-10 12-11"/><circle cx="11" cy="10.2" r="1.3"/><circle cx="16" cy="6.4" r="1.3"/></svg>
-            </div>
-            <h3><span class="en">Control &amp; Optimization</span><span class="zh" lang="zh-CN">控制与优化</span></h3>
-            <p class="en">Sample complexity of output-feedback and distributionally robust LQG control, sparse system identification, and the mirror-descent geometry of preference alignment.</p>
-            <p class="zh" lang="zh-CN">输出反馈与分布鲁棒 LQG 控制的样本复杂度、稀疏系统辨识，以及偏好对齐的镜像下降几何。</p>
-            <div class="tags mono"><span>LQG</span><span>SINDy</span><span>Mirror descent</span></div>
-            <a class="more-link" href="#publications" data-goto-filter="control"><span class="n mono"></span><span class="en">papers</span><span class="zh" lang="zh-CN">篇论文</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          </article>
-          <article class="card spot reveal">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12h3l2.5-6 4 13 3.5-10 2.5 5H22"/></svg>
-            </div>
-            <h3><span class="en">Signal, Imaging &amp; Statistics</span><span class="zh" lang="zh-CN">信号、成像与统计</span></h3>
-            <p class="en">Sparse-view CT reconstruction, RIS-aided beamforming, spectrum sharing, and recovery thresholds for sparse discriminant analysis.</p>
-            <p class="zh" lang="zh-CN">稀疏视角 CT 重建、RIS 辅助波束成形、频谱共享，以及稀疏判别分析的恢复阈值。</p>
-            <div class="tags mono"><span>CT</span><span>Beamforming</span><span>Sparse LDA</span></div>
-            <a class="more-link" href="#publications" data-goto-filter="signal"><span class="n mono"></span><span class="en">papers</span><span class="zh" lang="zh-CN">篇论文</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= PUBLICATIONS ================= -->
-    <section id="publications" class="section">
-      <div class="wrap">
-        <div class="pubs-head reveal">
-          <h2 class="section-title"><span class="idx mono">03</span><span class="en">Publications</span><span class="zh" lang="zh-CN">论文发表</span></h2>
-          <div class="filters" role="toolbar" aria-label="Filter publications">
-            <button class="chip active" data-filter="all"><span class="en">All</span><span class="zh" lang="zh-CN">全部</span><i class="mono"></i></button>
-            <button class="chip" data-filter="published"><span class="en">Published</span><span class="zh" lang="zh-CN">已发表</span><i class="mono"></i></button>
-            <button class="chip" data-filter="review"><span class="en">Under review</span><span class="zh" lang="zh-CN">在审</span><i class="mono"></i></button>
-            <span class="filters-sep" aria-hidden="true"></span>
-            <button class="chip" data-filter="systems"><span class="en">Systems</span><span class="zh" lang="zh-CN">系统</span><i class="mono"></i></button>
-            <button class="chip" data-filter="lowrank"><span class="en">Low-rank &amp; tensor</span><span class="zh" lang="zh-CN">低秩与张量</span><i class="mono"></i></button>
-            <button class="chip" data-filter="control"><span class="en">Control &amp; optimization</span><span class="zh" lang="zh-CN">控制与优化</span><i class="mono"></i></button>
-            <button class="chip" data-filter="signal"><span class="en">Signal, imaging &amp; stats</span><span class="zh" lang="zh-CN">信号、成像与统计</span><i class="mono"></i></button>
+          <div class="ring-grid" id="ring-grid"></div>
+          <div class="panel-foot">
+            <div><span class="bar" id="ring-bar"></span></div>
+            <div>T(p, n) = 2(p−1)·α + 2·(p−1)/p · n/β <span id="ring-ok" class="ok"></span></div>
+          </div>
+          <div class="panel-ctl">
+            <button class="tbtn" type="button" id="ring-play" aria-pressed="false">pause</button>
+            <button class="tbtn" type="button" id="ring-stepbtn">step</button>
+            <button class="tbtn" type="button" id="ring-reset">reset</button>
+            <button class="tbtn" type="button" data-ring-p="4">p=4</button>
+            <button class="tbtn" type="button" data-ring-p="8">p=8</button>
           </div>
         </div>
+        <p class="fig-cap">
+          <span class="en">Each cell is one chunk of a rank's buffer; the number counts how many ranks' data it already sums.
+            Reduce-scatter (p−1 steps) leaves every rank one fully reduced chunk; all-gather (p−1 steps) circulates them.
+            Each rank sends 2(p−1)/p·n bytes in total — independent of p as p grows, which is why the ring is bandwidth-optimal.</span>
+          <span class="zh" lang="zh-CN">每个格子是某个 rank 缓冲区中的一块数据，数字表示它已经累加了几个 rank 的数据。
+            Reduce-scatter（p−1 步）后，每个 rank 恰好持有一块完全归约的数据；all-gather（p−1 步）再把它们传遍整个环。
+            每个 rank 总共只发送 2(p−1)/p·n 字节，几乎与 p 无关——这正是 Ring 算法带宽最优的原因。</span>
+        </p>
+      </div>
+    </section>
 
-        <ol class="pubs">
-          <li class="pub reveal" data-status="published" data-topic="control" id="pub-lcss">
-            <div class="pub-meta mono"><span class="year">2026</span><span class="venue">L-CSS</span></div>
-            <div class="pub-body">
-              <h3 class="title">Geometric Perspectives on Preference Alignment: From Replicator Dynamics to Mirror Descent</h3>
-              <p class="authors"><b>Bowen Su</b></p>
-              <p class="where">IEEE Control Systems Letters</p>
-            </div>
+    <section id="options" data-sec="OPTIONS">
+      <h2 class="sh">OPTIONS<span class="gloss"><span class="en">— current work, Huawei</span><span class="zh" lang="zh-CN">当前方向 · 华为</span></span></h2>
+      <dl class="in opts">
+        <dt>--llm-systems</dt>
+        <dd>
+          <p class="en">Training and serving large models on accelerator clusters: inference engines, mixture-of-experts, and overlapping communication with computation.</p>
+          <p class="zh" lang="zh-CN">面向加速器集群的大模型训练与推理：推理引擎、混合专家模型（MoE），以及通信与计算的重叠优化。</p>
+          <p class="meta">vllm · sglang · moe</p>
+        </dd>
+        <dt>--collectives</dt>
+        <dd>
+          <p class="en">Collective algorithms that exploit workload structure — e.g. sparsity-aware AllReduce for irregular scientific workloads.</p>
+          <p class="zh" lang="zh-CN">利用负载结构设计集合通信算法，例如面向不规则科学计算负载的稀疏感知 AllReduce。</p>
+          <p class="meta">nccl · hccl · allreduce · <a href="#publications" data-goto-filter="systems"><span class="n"></span> <span class="en">paper</span><span class="zh" lang="zh-CN">篇论文</span></a></p>
+        </dd>
+      </dl>
+    </section>
+
+    <section id="history" data-sec="HISTORY">
+      <h2 class="sh">HISTORY<span class="gloss"><span class="en">— Ph.D. research, Michigan State University</span><span class="zh" lang="zh-CN">博士期间 · 密歇根州立大学</span></span></h2>
+      <dl class="in opts">
+        <dt>--low-rank <span class="arg">&lt;matrix|tensor&gt;</span></dt>
+        <dd>
+          <p class="en">CUR and pseudoskeleton decompositions, matrix and tensor completion under structured sampling, and low-rank structure in neural networks.</p>
+          <p class="zh" lang="zh-CN">CUR 与伪骨架分解、结构化采样下的矩阵与张量补全，以及神经网络中的低秩结构。</p>
+          <p class="meta">cur · tensor · completion · <a href="#publications" data-goto-filter="lowrank"><span class="n"></span> <span class="en">papers</span><span class="zh" lang="zh-CN">篇论文</span></a></p>
+        </dd>
+        <dt>--control <span class="arg">&lt;lqg|sysid|mirror-descent&gt;</span></dt>
+        <dd>
+          <p class="en">Sample complexity of output-feedback and distributionally robust LQG control, sparse system identification, and the mirror-descent geometry of preference alignment.</p>
+          <p class="zh" lang="zh-CN">输出反馈与分布鲁棒 LQG 控制的样本复杂度、稀疏系统辨识，以及偏好对齐的镜像下降几何。</p>
+          <p class="meta">lqg · sindy · mirror-descent · <a href="#publications" data-goto-filter="control"><span class="n"></span> <span class="en">papers</span><span class="zh" lang="zh-CN">篇论文</span></a></p>
+        </dd>
+        <dt>--signal <span class="arg">&lt;imaging|comms|stats&gt;</span></dt>
+        <dd>
+          <p class="en">Sparse-view CT reconstruction, RIS-aided beamforming, spectrum sharing, and recovery thresholds for sparse discriminant analysis.</p>
+          <p class="zh" lang="zh-CN">稀疏视角 CT 重建、RIS 辅助波束成形、频谱共享，以及稀疏判别分析的恢复阈值。</p>
+          <p class="meta">ct · beamforming · sparse-lda · <a href="#publications" data-goto-filter="signal"><span class="n"></span> <span class="en">papers</span><span class="zh" lang="zh-CN">篇论文</span></a></p>
+        </dd>
+      </dl>
+    </section>
+
+    <section id="publications" data-sec="PUBLICATIONS">
+      <h2 class="sh">PUBLICATIONS<span class="gloss zh" lang="zh-CN">论文</span></h2>
+      <div class="in">
+        <div class="flags" role="toolbar" aria-label="Filter publications">
+          <button class="flag active" type="button" data-filter="all">--all<i></i></button>
+          <button class="flag" type="button" data-filter="published">--published<i></i></button>
+          <button class="flag" type="button" data-filter="review">--under-review<i></i></button>
+          <button class="flag" type="button" data-filter="systems">--systems<i></i></button>
+          <button class="flag" type="button" data-filter="lowrank">--low-rank<i></i></button>
+          <button class="flag" type="button" data-filter="control">--control<i></i></button>
+          <button class="flag" type="button" data-filter="signal">--signal<i></i></button>
+        </div>
+
+        <ol class="bib">
+          <li class="bib-group" data-group="published"><span class="en">// peer-reviewed</span><span class="zh" lang="zh-CN">// 已发表</span></li>
+          <li class="bib-item" data-status="published" data-topic="control">
+            <span class="n">[1]</span>
+            <div><span class="au"><b>Bowen Su</b></span>. <span class="t">Geometric Perspectives on Preference Alignment: From Replicator Dynamics to Mirror Descent.</span>
+              <span class="ve">IEEE Control Systems Letters</span>, 2026. <span class="st pub">[published]</span></div>
           </li>
-          <li class="pub reveal" data-status="published" data-topic="lowrank">
-            <div class="pub-meta mono"><span class="year">2025</span><span class="venue">ICTAI</span></div>
-            <div class="pub-body">
-              <h3 class="title">Exploiting Low-Rank Structures in Neural Networks with Iterative CUR Approximations</h3>
-              <p class="authors">Zixiong Gao, Longxiu Huang, <b>Bowen Su</b>, Tao Wang, Xu Zhang, Yusi Zhang</p>
-              <p class="where">IEEE 37th International Conference on Tools with Artificial Intelligence (ICTAI)</p>
-            </div>
+          <li class="bib-item" data-status="published" data-topic="lowrank">
+            <span class="n">[2]</span>
+            <div><span class="au">Zixiong Gao, Longxiu Huang, <b>Bowen Su</b>, Tao Wang, Xu Zhang, Yusi Zhang</span>. <span class="t">Exploiting Low-Rank Structures in Neural Networks with Iterative CUR Approximations.</span>
+              <span class="ve">IEEE 37th International Conference on Tools with Artificial Intelligence (ICTAI)</span>, 2025. <span class="st pub">[published]</span></div>
           </li>
-          <li class="pub reveal" data-status="published" data-topic="lowrank">
-            <div class="pub-meta mono"><span class="year">2025</span><span class="venue">AMLDS</span></div>
-            <div class="pub-body">
-              <h3 class="title">Robust Anomaly Detection via Tensor Pseudoskeleton Decomposition</h3>
-              <p class="authors"><b>Bowen Su</b></p>
-              <p class="where">International Conference on Advanced Machine Learning and Data Science</p>
-            </div>
+          <li class="bib-item" data-status="published" data-topic="lowrank">
+            <span class="n">[3]</span>
+            <div><span class="au"><b>Bowen Su</b></span>. <span class="t">Robust Anomaly Detection via Tensor Pseudoskeleton Decomposition.</span>
+              <span class="ve">International Conference on Advanced Machine Learning and Data Science</span>, 2025. <span class="st pub">[published]</span></div>
           </li>
-          <li class="pub reveal" data-status="published" data-topic="lowrank">
-            <div class="pub-meta mono"><span class="year">2025</span><span class="venue">BigDataService</span></div>
-            <div class="pub-body">
-              <h3 class="title">A Scalable Binary CUR Low-Rank Approximation Algorithm</h3>
-              <p class="authors"><b>Bowen Su</b></p>
-              <p class="where">IEEE International Conference on Big Data Computing Service and Machine Learning Applications</p>
-            </div>
+          <li class="bib-item" data-status="published" data-topic="lowrank">
+            <span class="n">[4]</span>
+            <div><span class="au"><b>Bowen Su</b></span>. <span class="t">A Scalable Binary CUR Low-Rank Approximation Algorithm.</span>
+              <span class="ve">IEEE International Conference on Big Data Computing Service and Machine Learning Applications (BigDataService)</span>, 2025. <span class="st pub">[published]</span></div>
           </li>
-          <li class="pub reveal" data-status="published" data-topic="lowrank">
-            <div class="pub-meta mono"><span class="year">2024</span><span class="venue">CISS</span></div>
-            <div class="pub-body">
-              <h3 class="title">On the Robustness of Cross-Concentrated Sampling for Matrix Completion</h3>
-              <p class="authors">HanQin Cai, Longxiu Huang, Chandra Kundu, <b>Bowen Su</b></p>
-              <p class="where">Conference on Information Sciences and Systems (CISS)</p>
-            </div>
+          <li class="bib-item" data-status="published" data-topic="lowrank">
+            <span class="n">[5]</span>
+            <div><span class="au">HanQin Cai, Longxiu Huang, Chandra Kundu, <b>Bowen Su</b></span>. <span class="t">On the Robustness of Cross-Concentrated Sampling for Matrix Completion.</span>
+              <span class="ve">Conference on Information Sciences and Systems (CISS)</span>, 2024. <span class="st pub">[published]</span></div>
           </li>
 
-          <li class="pub-divider reveal" data-status="review" data-topic="*">
-            <span class="mono en">Preprints &amp; manuscripts under review</span>
-            <span class="mono zh" lang="zh-CN">预印本与在审稿件</span>
+          <li class="bib-group" data-group="review"><span class="en">// preprints &amp; manuscripts under review</span><span class="zh" lang="zh-CN">// 预印本与在审稿件</span></li>
+          <li class="bib-item" data-status="review" data-topic="lowrank">
+            <span class="n">[6]</span>
+            <div><span class="au"><b>Bowen Su</b>, Juntao You, HanQin Cai, Longxiu Huang</span>. <span class="t">Guaranteed Sampling Flexibility for Low-Tubal-Rank Tensor Completion.</span>
+              <span class="st"><a href="https://arxiv.org/abs/2406.11092">[arXiv:2406.11092]</a></span></div>
           </li>
-
-          <li class="pub reveal" data-status="review" data-topic="lowrank">
-            <div class="pub-meta mono"><span class="year">2024</span><span class="venue alt">arXiv</span></div>
-            <div class="pub-body">
-              <h3 class="title">Guaranteed Sampling Flexibility for Low-Tubal-Rank Tensor Completion</h3>
-              <p class="authors"><b>Bowen Su</b>, Juntao You, HanQin Cai, Longxiu Huang</p>
-              <p class="where"><a class="link" href="https://arxiv.org/abs/2406.11092">arXiv:2406.11092 ↗</a></p>
-            </div>
+          <li class="bib-item" data-status="review" data-topic="systems">
+            <span class="n">[7]</span>
+            <div><span class="au"><b>Bowen Su</b></span>. <span class="t">Sparsity-Aware Rabenseifner AllReduce for Irregular Scientific Workloads.</span>
+              <span class="st">[under review]</span></div>
           </li>
-          <li class="pub reveal" data-status="review" data-topic="systems">
-            <div class="pub-meta mono"><span class="venue muted"><span class="en">Under review</span><span class="zh" lang="zh-CN">在审</span></span></div>
-            <div class="pub-body">
-              <h3 class="title">Sparsity-Aware Rabenseifner AllReduce for Irregular Scientific Workloads</h3>
-              <p class="authors"><b>Bowen Su</b></p>
-            </div>
+          <li class="bib-item" data-status="review" data-topic="signal">
+            <span class="n">[8]</span>
+            <div><span class="au"><b>Bowen Su</b>, Ce Wang</span>. <span class="t">Learned Inertial Unfolding with a Shared Transformer Denoiser for Distributed Sparse-View Industrial CT.</span>
+              <span class="st">[under review]</span></div>
           </li>
-          <li class="pub reveal" data-status="review" data-topic="signal">
-            <div class="pub-meta mono"><span class="venue muted"><span class="en">Under review</span><span class="zh" lang="zh-CN">在审</span></span></div>
-            <div class="pub-body">
-              <h3 class="title">Learned Inertial Unfolding with a Shared Transformer Denoiser for Distributed Sparse-View Industrial CT</h3>
-              <p class="authors"><b>Bowen Su</b>, Ce Wang</p>
-            </div>
+          <li class="bib-item" data-status="review" data-topic="signal">
+            <span class="n">[9]</span>
+            <div><span class="au"><b>Bowen Su</b>, Yifei Li, Guanqi Lu, Hao Wu, Ce Wang</span>. <span class="t">Sharp Recovery Thresholds for Sparse Discriminant Analysis under Missing and Noisy Labels.</span>
+              <span class="st">[under review]</span></div>
           </li>
-          <li class="pub reveal" data-status="review" data-topic="signal">
-            <div class="pub-meta mono"><span class="venue muted"><span class="en">Under review</span><span class="zh" lang="zh-CN">在审</span></span></div>
-            <div class="pub-body">
-              <h3 class="title">Sharp Recovery Thresholds for Sparse Discriminant Analysis under Missing and Noisy Labels</h3>
-              <p class="authors"><b>Bowen Su</b>, Yifei Li, Guanqi Lu, Hao Wu, Ce Wang</p>
-            </div>
+          <li class="bib-item" data-status="review" data-topic="control">
+            <span class="n">[10]</span>
+            <div><span class="au"><b>Bowen Su</b>, Ce Wang</span>. <span class="t">Joint Sparse Identification of Nonlinear Dynamics over Unreliable Rate Channels.</span>
+              <span class="st">[under review]</span></div>
           </li>
-          <li class="pub reveal" data-status="review" data-topic="control">
-            <div class="pub-meta mono"><span class="venue muted"><span class="en">Under review</span><span class="zh" lang="zh-CN">在审</span></span></div>
-            <div class="pub-body">
-              <h3 class="title">Joint Sparse Identification of Nonlinear Dynamics over Unreliable Rate Channels</h3>
-              <p class="authors"><b>Bowen Su</b>, Ce Wang</p>
-            </div>
+          <li class="bib-item" data-status="review" data-topic="signal">
+            <span class="n">[11]</span>
+            <div><span class="au"><b>Bowen Su</b>, Ce Wang</span>. <span class="t">Certified Alternating Optimization for RIS-Aided Multi-User Beamforming.</span>
+              <span class="st">[under review]</span></div>
           </li>
-          <li class="pub reveal" data-status="review" data-topic="signal">
-            <div class="pub-meta mono"><span class="venue muted"><span class="en">Under review</span><span class="zh" lang="zh-CN">在审</span></span></div>
-            <div class="pub-body">
-              <h3 class="title">Certified Alternating Optimization for RIS-Aided Multi-User Beamforming</h3>
-              <p class="authors"><b>Bowen Su</b>, Ce Wang</p>
-            </div>
+          <li class="bib-item" data-status="review" data-topic="control">
+            <span class="n">[12]</span>
+            <div><span class="au"><b>Bowen Su</b></span>. <span class="t">Statistical Asymptotics of Distributionally Robust LQG Control: Robustness-Induced Bias and Phase Transitions.</span>
+              <span class="st">[under review]</span></div>
           </li>
-          <li class="pub reveal" data-status="review" data-topic="control">
-            <div class="pub-meta mono"><span class="venue muted"><span class="en">Under review</span><span class="zh" lang="zh-CN">在审</span></span></div>
-            <div class="pub-body">
-              <h3 class="title">Statistical Asymptotics of Distributionally Robust LQG Control: Robustness-Induced Bias and Phase Transitions</h3>
-              <p class="authors"><b>Bowen Su</b></p>
-            </div>
+          <li class="bib-item" data-status="review" data-topic="control">
+            <span class="n">[13]</span>
+            <div><span class="au"><b>Bowen Su</b></span>. <span class="t">A Hankel-Margin-Free Sample-Complexity Bound for Output-Feedback LQG Control.</span>
+              <span class="st">[under review]</span></div>
           </li>
-          <li class="pub reveal" data-status="review" data-topic="control">
-            <div class="pub-meta mono"><span class="venue muted"><span class="en">Under review</span><span class="zh" lang="zh-CN">在审</span></span></div>
-            <div class="pub-body">
-              <h3 class="title">A Hankel-Margin-Free Sample-Complexity Bound for Output-Feedback LQG Control</h3>
-              <p class="authors"><b>Bowen Su</b></p>
-            </div>
-          </li>
-          <li class="pub reveal" data-status="review" data-topic="signal">
-            <div class="pub-meta mono"><span class="venue muted"><span class="en">Under review</span><span class="zh" lang="zh-CN">在审</span></span></div>
-            <div class="pub-body">
-              <h3 class="title">Tuning-Free Mirror Loading for Multicarrier Spectrum Sharing under Emission Constraints</h3>
-              <p class="authors"><b>Bowen Su</b></p>
-            </div>
+          <li class="bib-item" data-status="review" data-topic="signal">
+            <span class="n">[14]</span>
+            <div><span class="au"><b>Bowen Su</b></span>. <span class="t">Tuning-Free Mirror Loading for Multicarrier Spectrum Sharing under Emission Constraints.</span>
+              <span class="st">[under review]</span></div>
           </li>
         </ol>
-        <p class="empty mono" hidden><span class="en">No papers in this category.</span><span class="zh" lang="zh-CN">该类别下暂无论文。</span></p>
+        <p class="dim empty" hidden><span class="en">grep: no matches</span><span class="zh" lang="zh-CN">grep：没有匹配项</span></p>
       </div>
     </section>
 
-    <!-- ================= EXPERIENCE ================= -->
-    <section id="experience" class="section">
-      <div class="wrap">
-        <h2 class="section-title reveal"><span class="idx mono">04</span><span class="en">Experience &amp; Education</span><span class="zh" lang="zh-CN">经历与教育</span></h2>
-        <div class="two-col">
-          <div class="reveal">
-            <h3 class="col-label mono"><span class="en">Work</span><span class="zh" lang="zh-CN">工作</span></h3>
-            <ol class="timeline">
-              <li class="now">
-                <time class="mono"><span class="en">2025.08 — Present</span><span class="zh" lang="zh-CN">2025.08 — 至今</span></time>
-                <strong><span class="en">Huawei Technologies</span><span class="zh" lang="zh-CN">华为技术有限公司</span></strong>
-                <p><span class="en">AI Infra Research Engineer</span><span class="zh" lang="zh-CN">AI Infra 研究工程师</span></p>
-              </li>
-              <li>
-                <time class="mono">2024.05 — 2024.12</time>
-                <strong><span class="en">Los Alamos National Laboratory</span><span class="zh" lang="zh-CN">洛斯阿拉莫斯国家实验室（LANL）</span></strong>
-                <p><span class="en">Research Graduate Student</span><span class="zh" lang="zh-CN">研究生研究员</span></p>
-              </li>
-            </ol>
-          </div>
-          <div class="reveal">
-            <h3 class="col-label mono"><span class="en">Education</span><span class="zh" lang="zh-CN">教育</span></h3>
-            <ol class="timeline">
-              <li>
-                <time class="mono">2020 — 2025</time>
-                <strong><span class="en">Michigan State University</span><span class="zh" lang="zh-CN">密歇根州立大学</span></strong>
-                <p><span class="en">Ph.D. in Applied Mathematics · Graduate Certificate in HPC</span><span class="zh" lang="zh-CN">应用数学 博士 · 高性能计算研究生证书</span></p>
-              </li>
-              <li>
-                <time class="mono">2017 — 2020</time>
-                <strong><span class="en">Nankai University</span><span class="zh" lang="zh-CN">南开大学</span></strong>
-                <p><span class="en">M.S. in Mathematics</span><span class="zh" lang="zh-CN">数学 硕士</span></p>
-              </li>
-              <li>
-                <time class="mono">2013 — 2017</time>
-                <strong><span class="en">Jilin University</span><span class="zh" lang="zh-CN">吉林大学</span></strong>
-                <p><span class="en">B.A. in Mathematics and Applied Mathematics · Tang Aoqing Honors Program</span><span class="zh" lang="zh-CN">数学与应用数学 学士 · 唐敖庆理科试验班</span></p>
-              </li>
-            </ol>
-          </div>
+    <section id="log" data-sec="LOG">
+      <h2 class="sh">LOG<span class="gloss"><span class="en">— git log --oneline --graph</span><span class="zh" lang="zh-CN">动态</span></span></h2>
+      <ul class="in log">
+        <li><span class="g">*</span><span class="d">2026</span><span><span class="ref">(HEAD -&gt; main)</span> <span class="ty">paper:</span>
+          <span class="en">preference-alignment geometry accepted in <i>IEEE Control Systems Letters</i></span>
+          <span class="zh" lang="zh-CN">偏好对齐几何的论文被 <i>IEEE Control Systems Letters</i> 接收</span></span></li>
+        <li><span class="g">*</span><span class="d">2025-08</span><span><span class="ty">career:</span>
+          <span class="en">joined Huawei as AI Infra Research Engineer</span>
+          <span class="zh" lang="zh-CN">加入华为，任 AI Infra 研究工程师</span></span></li>
+        <li><span class="g">*</span><span class="d">2025-07</span><span><span class="ty">edu:</span>
+          <span class="en">Ph.D. in Applied Mathematics, Michigan State University</span>
+          <span class="zh" lang="zh-CN">获密歇根州立大学应用数学博士学位</span></span></li>
+        <li><span class="g">*</span><span class="d">2025</span><span><span class="ty">paper:</span>
+          <span class="en">IEEE ICTAI, IEEE BigDataService, AMLDS</span>
+          <span class="zh" lang="zh-CN">论文发表于 IEEE ICTAI、IEEE BigDataService 与 AMLDS</span></span></li>
+        <li><span class="g">*</span><span class="d">2024-05</span><span><span class="ty">career:</span>
+          <span class="en">research graduate student at Los Alamos National Laboratory</span>
+          <span class="zh" lang="zh-CN">赴洛斯阿拉莫斯国家实验室任研究生研究员</span></span></li>
+      </ul>
+    </section>
+
+    <section id="experience" data-sec="EXPERIENCE">
+      <h2 class="sh">EXPERIENCE<span class="gloss zh" lang="zh-CN">经历与教育</span></h2>
+      <div class="in">
+        <p class="sub"><span class="en">$ cat work.csv</span><span class="zh" lang="zh-CN">$ cat work.csv  # 工作</span></p>
+        <div class="tbl">
+          <span class="th">period</span><span class="th">org</span><span class="th">role</span>
+          <span class="c1 now">2025-08 → <span class="en">now</span><span class="zh" lang="zh-CN">至今</span></span>
+          <span><span class="en">Huawei Technologies</span><span class="zh" lang="zh-CN">华为技术有限公司</span></span>
+          <span><span class="en">AI Infra Research Engineer</span><span class="zh" lang="zh-CN">AI Infra 研究工程师</span></span>
+          <span class="c1">2024-05 → 2024-12</span>
+          <span><span class="en">Los Alamos National Laboratory</span><span class="zh" lang="zh-CN">洛斯阿拉莫斯国家实验室（LANL）</span></span>
+          <span><span class="en">Research Graduate Student</span><span class="zh" lang="zh-CN">研究生研究员</span></span>
+        </div>
+        <p class="sub"><span class="en">$ cat education.csv</span><span class="zh" lang="zh-CN">$ cat education.csv  # 教育</span></p>
+        <div class="tbl">
+          <span class="th">period</span><span class="th">school</span><span class="th">degree</span>
+          <span class="c1">2020 → 2025</span>
+          <span><span class="en">Michigan State University</span><span class="zh" lang="zh-CN">密歇根州立大学</span></span>
+          <span><span class="en">Ph.D. Applied Mathematics · Graduate Certificate in HPC</span><span class="zh" lang="zh-CN">应用数学 博士 · 高性能计算研究生证书</span></span>
+          <span class="c1">2017 → 2020</span>
+          <span><span class="en">Nankai University</span><span class="zh" lang="zh-CN">南开大学</span></span>
+          <span><span class="en">M.S. Mathematics</span><span class="zh" lang="zh-CN">数学 硕士</span></span>
+          <span class="c1">2013 → 2017</span>
+          <span><span class="en">Jilin University</span><span class="zh" lang="zh-CN">吉林大学</span></span>
+          <span><span class="en">B.A. Mathematics and Applied Mathematics · Tang Aoqing Honors Program</span><span class="zh" lang="zh-CN">数学与应用数学 学士 · 唐敖庆理科试验班</span></span>
         </div>
       </div>
     </section>
 
-    <!-- ================= MORE ================= -->
-    <section id="more" class="section">
-      <div class="wrap">
-        <h2 class="section-title reveal"><span class="idx mono">05</span><span class="en">Teaching, Awards &amp; Skills</span><span class="zh" lang="zh-CN">教学、奖项与技能</span></h2>
-        <div class="bento">
-          <div class="card spot reveal b-teach">
-            <h3 class="card-label mono"><span class="en">Teaching · Michigan State University</span><span class="zh" lang="zh-CN">教学 · 密歇根州立大学</span></h3>
-            <ul class="rows">
-              <li><span><b class="mono">MTH/CMSE 314</b> <span class="en">Matrix Algebra with Applications</span><span class="zh" lang="zh-CN">矩阵代数及其应用</span></span><time class="mono">2021 — 2024</time></li>
-              <li><span><b class="mono">MTH 235</b> <span class="en">Differential Equations</span><span class="zh" lang="zh-CN">微分方程</span></span><time class="mono">2024 <span class="en">Fall</span><span class="zh" lang="zh-CN">秋</span></time></li>
-              <li><span><b class="mono">MTH 234</b> <span class="en">Calculus III</span><span class="zh" lang="zh-CN">微积分 III</span></span><time class="mono">2020 <span class="en">Fall</span><span class="zh" lang="zh-CN">秋</span></time></li>
-            </ul>
-          </div>
-          <div class="card spot reveal b-award">
-            <h3 class="card-label mono"><span class="en">Awards</span><span class="zh" lang="zh-CN">奖项</span></h3>
-            <div class="award">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="m8.5 13.8-1.5 7.7 5-2.8 5 2.8-1.5-7.7"/></svg>
-              <div>
-                <strong><span class="en">Herbert T. Graham Scholarship</span><span class="zh" lang="zh-CN">Herbert T. Graham 奖学金</span></strong>
-                <p class="mono">MSU · 2024</p>
-              </div>
-            </div>
-          </div>
-          <div class="card spot reveal b-skills">
-            <h3 class="card-label mono"><span class="en">Toolbox</span><span class="zh" lang="zh-CN">技术栈</span></h3>
-            <dl class="skills">
-              <dt class="mono"><span class="en">Languages</span><span class="zh" lang="zh-CN">语言</span></dt>
-              <dd><span>Python</span><span>C++</span></dd>
-              <dt class="mono"><span class="en">Inference</span><span class="zh" lang="zh-CN">推理框架</span></dt>
-              <dd><span>vLLM</span><span>SGLang</span></dd>
-              <dt class="mono"><span class="en">Comms</span><span class="zh" lang="zh-CN">通信库</span></dt>
-              <dd><span>NCCL</span><span>HCCL</span></dd>
-              <dt class="mono"><span class="en">Systems</span><span class="zh" lang="zh-CN">系统</span></dt>
-              <dd><span>Linux</span><span>Docker</span><span>Kubernetes</span><span>Git</span><span class="en">Profiling</span><span class="zh" lang="zh-CN">性能剖析</span></dd>
-            </dl>
-          </div>
-        </div>
+    <section id="teaching" data-sec="TEACHING">
+      <h2 class="sh">TEACHING<span class="gloss"><span class="en">— Michigan State University</span><span class="zh" lang="zh-CN">教学 · 密歇根州立大学</span></span></h2>
+      <div class="in tbl">
+        <span class="c1">MTH/CMSE 314</span><span>2021 → 2024</span><span><span class="en">Matrix Algebra with Applications</span><span class="zh" lang="zh-CN">矩阵代数及其应用</span></span>
+        <span class="c1">MTH 235</span><span>2024 <span class="en">fall</span><span class="zh" lang="zh-CN">秋</span></span><span><span class="en">Differential Equations</span><span class="zh" lang="zh-CN">微分方程</span></span>
+        <span class="c1">MTH 234</span><span>2020 <span class="en">fall</span><span class="zh" lang="zh-CN">秋</span></span><span><span class="en">Calculus III</span><span class="zh" lang="zh-CN">微积分 III</span></span>
       </div>
     </section>
 
-    <!-- ================= BLOG + LEETCODE ================= -->
-    <section id="notes" class="section">
-      <div class="wrap">
-        <h2 class="section-title reveal"><span class="idx mono">06</span><span class="en">Blog</span><span class="zh" lang="zh-CN">博客</span></h2>
-        <div class="notes-grid">
-          <div class="card spot reveal">
-            <h3 class="card-label mono"><span class="en">Latest posts</span><span class="zh" lang="zh-CN">最新文章</span></h3>
-            <ul class="note-list" id="home-posts"></ul>
-            <a class="more-link" href="blog/"><span class="en">All posts</span><span class="zh" lang="zh-CN">全部文章</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          </div>
-        </div>
+    <section id="awards" data-sec="AWARDS">
+      <h2 class="sh">AWARDS<span class="gloss zh" lang="zh-CN">奖项</span></h2>
+      <div class="in">
+        <p><span class="dim">2024</span>&nbsp; <span class="en">Herbert T. Graham Scholarship, Michigan State University</span><span class="zh" lang="zh-CN">Herbert T. Graham 奖学金，密歇根州立大学</span></p>
       </div>
     </section>
 
-    <!-- ================= CONTACT ================= -->
-    <section id="contact" class="section contact">
-      <div class="wrap reveal">
-        <p class="eyebrow mono"><span class="dot"></span><span class="en">Get in touch</span><span class="zh" lang="zh-CN">联系我</span></p>
-        <h2 class="contact-title">
-          <span class="en">Let’s build something <em>fast</em>.</span>
-          <span class="zh" lang="zh-CN">一起做点<em>快</em>的东西。</span>
-        </h2>
-        <p class="contact-sub">
-          <span class="en">Open to research collaborations on AI systems, HPC and numerical algorithms.</span>
-          <span class="zh" lang="zh-CN">欢迎在 AI 系统、高性能计算与数值算法方向交流合作。</span>
-        </p>
-        <button class="email-big copy-email" type="button">
-          <span class="mono">subowen@msu.edu</span>
-          <span class="copy-tag mono"><span class="en">copy</span><span class="zh" lang="zh-CN">复制</span></span>
-        </button>
+    <section id="environment" data-sec="ENVIRONMENT">
+      <h2 class="sh">ENVIRONMENT<span class="gloss zh" lang="zh-CN">技术栈</span></h2>
+      <pre class="in env"><span class="k">LANG</span><span class="eq">=</span>python:c++
+<span class="k">INFER</span><span class="eq">=</span>vllm:sglang
+<span class="k">COMMS</span><span class="eq">=</span>nccl:hccl
+<span class="k">SYS</span><span class="eq">=</span>linux:docker:kubernetes:git:profilers</pre>
+    </section>
+
+    <section id="files" data-sec="FILES">
+      <h2 class="sh">FILES<span class="gloss zh" lang="zh-CN">博客与相册</span></h2>
+      <div class="in">
+        <ul class="files" id="home-files">
+          <li><span class="perm">drwxr-xr-x</span><span class="d">—</span><a class="dir" href="blog/">~/blog/</a></li>
+          <li><span class="perm">drwxr-xr-x</span><span class="d">—</span><a class="dir" href="gallery/">~/gallery/</a></li>
+        </ul>
       </div>
+    </section>
+
+    <section id="visitors" data-sec="VISITORS">
+      <h2 class="sh">VISITORS<span class="gloss zh" lang="zh-CN">访客地图</span></h2>
+      <div class="in">
+        <p class="dim"><span class="en">Where readers of this page come from.</span><span class="zh" lang="zh-CN">访问者来自哪里。</span></p>
+        <div class="visitors-map" id="visitors-map"><script async type="text/javascript" id="mmvst_globe" src="https://mapmyvisitors.com/globe.js?d=Ooq9fya2UH9uG_Famu4XaxCBnKGIwGiEboMdpehIg50"></script></div>
+      </div>
+    </section>
+
+    <section id="author" data-sec="AUTHOR">
+      <h2 class="sh">AUTHOR<span class="gloss zh" lang="zh-CN">联系</span></h2>
+      <div class="in">
+        <p>Bowen Su &lt;<a href="mailto:subowen@msu.edu">subowen@msu.edu</a>&gt;<button class="copy copy-email" type="button"><span class="en">copy</span><span class="zh" lang="zh-CN">复制</span></button></p>
+        <p class="dim"><span class="en">Open to research collaborations on AI systems, HPC and numerical algorithms.</span>
+          <span class="zh" lang="zh-CN">欢迎在 AI 系统、高性能计算与数值算法方向交流合作。</span></p>
+      </div>
+    </section>
+
+    <section id="see-also" data-sec="SEE ALSO">
+      <h2 class="sh">SEE ALSO</h2>
+      <p class="in">
+        <a href="blog/">blog</a>(7), <a href="gallery/">gallery</a>(7), <a href="https://github.com/recursion-ascend">github</a>(1), <a href="https://arxiv.org/abs/2406.11092">arxiv</a>(1), <a href="cv.pdf">cv.pdf</a>
+      </p>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="wrap">
-      <span>© <span id="year">2026</span> Bowen Su</span>
-      <span class="mono">
-        <span class="en">Press <kbd>⌘</kbd><kbd>K</kbd> to navigate</span>
-        <span class="zh" lang="zh-CN">按 <kbd>⌘</kbd><kbd>K</kbd> 快速导航</span>
-      </span>
-    </div>
+  <footer class="man-foot">
+    <span>recursion-ascend.github.io</span>
+    <span id="updated"></span>
+    <span>BOWEN-SU(1)</span>
   </footer>
+</div>
 
-  <!-- ================= COMMAND PALETTE ================= -->
-  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command menu" hidden>
-    <div class="palette-backdrop" data-close></div>
-    <div class="palette-panel">
-      <div class="palette-input">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
-        <input id="palette-q" type="text" autocomplete="off" spellcheck="false" aria-label="Search">
-        <kbd class="mono">esc</kbd>
-      </div>
-      <ul class="palette-list" id="palette-list" role="listbox"></ul>
-    </div>
-  </div>
+<div class="statusbar" id="statusbar">
+  <span class="sb-session">[bowen-su]</span>
+  <nav class="sb-windows" aria-label="Pages">
+    <a class="win" data-win="home" href="./">0:home</a>
+    <a class="win" data-win="blog" href="blog/">1:blog</a>
+    <a class="win" data-win="gallery" href="gallery/">2:gallery</a>
+  </nav>
+  <button class="sb-cmd" type="button" id="cmd-open"><kbd>:</kbd><span class="hint"><span class="en"> cmd</span><span class="zh" lang="zh-CN"> 命令</span></span></button>
+  <span class="sb-spacer"></span>
+  <span class="sb-item sb-section" id="sb-section"></span>
+  <button class="sb-btn" type="button" data-toggle-lang><span class="lbl">lang:</span><b class="en">en</b><b class="zh">中</b></button>
+  <button class="sb-btn" type="button" data-toggle-theme><span class="lbl">theme:</span><b id="sb-theme">dark</b></button>
+  <span class="sb-clock" id="sb-clock"></span>
+</div>
 
-  <div class="toast mono" id="toast" role="status" aria-live="polite"></div>
+<div class="cmd" id="cmd" role="dialog" aria-label="Command line" hidden>
+  <ul class="cmd-list" id="cmd-list" role="listbox"></ul>
+  <label class="cmd-line"><span>:</span><input id="cmd-input" type="text" autocomplete="off" spellcheck="false" aria-label="Command"></label>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="main.js"></script>
+<script src="main.js"></script>
 </body>
 </html>

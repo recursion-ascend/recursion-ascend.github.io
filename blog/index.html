@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" data-lang="en" data-root="../" data-title-en="Blog — Bowen Su" data-title-zh="博客 — Bowen Su">
+<html lang="en" data-lang="en" data-root="../" data-page="blog" data-title-en="blog(7) — Bowen Su" data-title-zh="博客 — Bowen Su">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blog — Bowen Su</title>
+  <title>blog(7) — Bowen Su</title>
   <meta name="description" content="Notes on AI systems, HPC and mathematics by Bowen Su.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%230a0c0d'/><text x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-style='italic' font-size='32' fill='%234fd1b9'>BS</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%230f0f0d'/><text x='8' y='44' font-family='monospace' font-size='34' fill='%23f2a93b'>$_</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
   <script>
     (function () {
       var d = document.documentElement;
-      d.classList.add("js");
       try {
         var t = localStorage.getItem("theme");
         if (t === "light" || t === "dark") d.setAttribute("data-theme", t);
@@ -26,74 +25,63 @@
   </script>
 </head>
 <body>
-  <div class="progress" aria-hidden="true"></div>
+<div class="term">
 
-  <header class="nav" id="nav">
-    <a class="brand" href="../" aria-label="Home"><span>B</span><i>S</i></a>
-    <nav class="nav-links sub" aria-label="Pages">
-      <a href="../"><span class="en">Home</span><span class="zh" lang="zh-CN">主页</span></a>
-      <a href="../blog/" aria-current="page"><span class="en">Blog</span><span class="zh" lang="zh-CN">博客</span></a>
-      <a href="../gallery/"><span class="en">Gallery</span><span class="zh" lang="zh-CN">相册</span></a>
-    </nav>
-    <div class="nav-actions">
-      <button class="kbd-btn" id="palette-open" type="button" aria-label="Open command menu">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
-        <span class="kbd-hint"><kbd>⌘</kbd><kbd>K</kbd></span>
-      </button>
-      <button class="lang-switch" id="lang-toggle" type="button" aria-label="Switch language / 切换语言">
-        <span class="opt opt-en">EN</span><span class="opt opt-zh">中</span><span class="thumb" aria-hidden="true"></span>
-      </button>
-      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle dark mode">
-        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1.5 12h3M19.5 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
-      </button>
-    </div>
+  <header class="man-head">
+    <span>BLOG(7)</span>
+    <span class="mh-mid"><span class="en">Miscellaneous</span><span class="zh" lang="zh-CN">杂项</span></span>
+    <span>BLOG(7)</span>
   </header>
 
-  <main class="page">
-    <div class="wrap">
-      <header class="page-head">
-        <p class="eyebrow mono"><span class="dot"></span><span class="en">Writing</span><span class="zh" lang="zh-CN">写作</span></p>
-        <h1 class="page-title"><span class="en">The <em>Blog</em></span><span class="zh" lang="zh-CN"><em>博客</em></span></h1>
-        <p class="page-sub">
-          <span class="en">Notes on AI systems, high-performance computing, and the mathematics underneath.</span>
-          <span class="zh" lang="zh-CN">关于 AI 系统、高性能计算，以及背后那些数学的笔记。</span>
-        </p>
-      </header>
-      <div class="toolbar">
-        <label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg><input id="q" type="search" autocomplete="off" aria-label="Search posts"></label>
-      </div>
-      <div class="tag-row" id="tags"></div>
-      <ul class="post-list" id="post-list"></ul>
-      <p class="state-msg" id="state" hidden></p>
+  <p class="prompt-line"><span class="ps1"><span class="u">recursion@ascend</span><span class="d">:</span><span class="p">~/blog</span><span class="d">$</span></span> ls ..</p>
+  <nav class="ls" aria-label="Site">
+    <a href="../">~/</a>
+    <a class="dir cur" href="../blog/">blog/</a>
+    <a class="dir" href="../gallery/">gallery/</a>
+    <a class="doc" href="../cv.pdf">cv.pdf</a>
+  </nav>
+
+  <main>
+    <p class="prompt-line"><span class="ps1"><span class="u">recursion@ascend</span><span class="d">:</span><span class="p">~/blog</span><span class="d">$</span></span> ls -lt</p>
+    <h1 class="page-title">blog</h1>
+    <p class="page-sub"><span class="en">Notes on AI systems, high-performance computing, and the mathematics underneath.</span><span class="zh" lang="zh-CN">关于 AI 系统、高性能计算，以及背后那些数学的笔记。</span></p>
+    <div class="toolbar">
+      <label class="search"><span class="pfx">grep -i</span><input id="q" type="search" autocomplete="off" aria-label="Search posts"></label>
     </div>
+    <div class="tag-row" id="tags"></div>
+    <ul class="post-list" id="post-list"></ul>
+    <p class="state-msg" id="state" hidden></p>
   </main>
 
-  <footer class="footer">
-    <div class="wrap">
-      <span>© <span id="year">2026</span> Bowen Su</span>
-      <span class="mono">
-        <span class="en">Press <kbd>⌘</kbd><kbd>K</kbd> to navigate</span>
-        <span class="zh" lang="zh-CN">按 <kbd>⌘</kbd><kbd>K</kbd> 快速导航</span>
-      </span>
-    </div>
+  <footer class="man-foot">
+    <span>recursion-ascend.github.io</span>
+    <span id="updated"></span>
+    <span>BLOG(7)</span>
   </footer>
+</div>
 
-  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command menu" hidden>
-    <div class="palette-backdrop" data-close></div>
-    <div class="palette-panel">
-      <div class="palette-input">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
-        <input id="palette-q" type="text" autocomplete="off" spellcheck="false" aria-label="Search">
-        <kbd class="mono">esc</kbd>
-      </div>
-      <ul class="palette-list" id="palette-list" role="listbox"></ul>
-    </div>
-  </div>
+<div class="statusbar" id="statusbar">
+  <span class="sb-session">[bowen-su]</span>
+  <nav class="sb-windows" aria-label="Pages">
+    <a class="win" data-win="home" href="../">0:home</a>
+    <a class="win" data-win="blog" href="../blog/">1:blog</a>
+    <a class="win" data-win="gallery" href="../gallery/">2:gallery</a>
+  </nav>
+  <button class="sb-cmd" type="button" id="cmd-open"><kbd>:</kbd><span class="hint"><span class="en"> cmd</span><span class="zh" lang="zh-CN"> 命令</span></span></button>
+  <span class="sb-spacer"></span>
+  <span class="sb-item sb-section">~/blog</span>
+  <button class="sb-btn" type="button" data-toggle-lang><span class="lbl">lang:</span><b class="en">en</b><b class="zh">中</b></button>
+  <button class="sb-btn" type="button" data-toggle-theme><span class="lbl">theme:</span><b id="sb-theme">dark</b></button>
+  <span class="sb-clock" id="sb-clock"></span>
+</div>
 
-  <div class="toast mono" id="toast" role="status" aria-live="polite"></div>
+<div class="cmd" id="cmd" role="dialog" aria-label="Command line" hidden>
+  <ul class="cmd-list" id="cmd-list" role="listbox"></ul>
+  <label class="cmd-line"><span>:</span><input id="cmd-input" type="text" autocomplete="off" spellcheck="false" aria-label="Command"></label>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="../main.js"></script>
-  <script src="../assets/blog.js"></script>
+<script src="../main.js"></script>
+<script src="../assets/blog.js"></script>
 </body>
 </html>

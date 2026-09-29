@@ -38,10 +38,10 @@
     function renderTags() {
       if (!tags.length) { tagsEl.hidden = true; return; }
       tagsEl.innerHTML = ['<button class="chip' + (activeTag ? "" : " active") + '" data-tag="">' +
-        '<span class="en">All</span><span class="zh" lang="zh-CN">全部</span><i class="mono">' + posts.length + "</i></button>"]
+        '--all<i>' + posts.length + "</i></button>"]
         .concat(tags.map(function (t) {
           return '<button class="chip' + (activeTag === t ? " active" : "") + '" data-tag="' + S.esc(t) + '">#' +
-            S.esc(t) + '<i class="mono">' + counts[t] + "</i></button>";
+            S.esc(t) + "<i>" + counts[t] + "</i></button>";
         })).join("");
     }
     tagsEl.addEventListener("click", function (e) {
@@ -60,18 +60,19 @@
         return [p.title, p.title_zh, p.summary, p.summary_zh, (p.tags || []).join(" ")].join(" ").toLowerCase().indexOf(term) !== -1;
       });
       listEl.innerHTML = shown.map(function (p) {
+        // ls -l: perms, date, file name — then title, summary and tags underneath
         return '<li class="post-item"><a href="post.html?p=' + encodeURIComponent(p.slug) + '">' +
-          "<time>" + S.esc(S.fmtDate(p.date)) + "</time><div>" +
-          "<h2>" + S.esc(S.pick(p, "title")) + "</h2>" +
-          (S.pick(p, "summary") ? "<p>" + S.esc(S.pick(p, "summary")) + "</p>" : "") +
-          '<div class="mini-tags">' + (p.tags || []).map(function (t) { return "<span>#" + S.esc(t) + "</span>"; }).join("") + "</div>" +
-          "</div></a></li>";
+          '<span class="perm">-rw-r--r--</span><time>' + S.esc(p.date) + '</time><span class="fn">' + S.esc(p.slug) + ".md</span>" +
+          '<span class="ti">' + S.esc(S.pick(p, "title")) + "</span>" +
+          (S.pick(p, "summary") ? '<span class="su">' + S.esc(S.pick(p, "summary")) + "</span>" : "") +
+          ((p.tags || []).length ? '<span class="tg">' + (p.tags || []).map(function (t) { return "#" + S.esc(t); }).join(" ") + "</span>" : "") +
+          "</a></li>";
       }).join("");
       state.hidden = shown.length > 0;
       state.innerHTML = MSG.none;
     }
 
-    function placeholder() { q.placeholder = S.lang() === "zh" ? "搜索文章…" : "Search posts…"; }
+    function placeholder() { q.placeholder = S.lang() === "zh" ? "关键词" : "pattern"; }
     q.addEventListener("input", render);
     S.onLang(function () { placeholder(); render(); });
     placeholder();
@@ -98,7 +99,8 @@
       var title = S.pick(post, "title");
       document.getElementById("post-title").textContent = title;
       S.setTitle(post.title + " — Bowen Su", (post.title_zh || post.title) + " — Bowen Su");
-      var meta = [S.esc(S.fmtDate(post.date))];
+      document.getElementById("post-file").textContent = post.slug + ".md";
+      var meta = [S.esc(post.date)];
       if (minutes) meta.push(S.lang() === "zh" ? minutes + " 分钟阅读" : minutes + " min read");
       meta = meta.concat((post.tags || []).map(function (t) { return "#" + S.esc(t); }));
       document.getElementById("post-meta").innerHTML = meta.map(function (m) { return "<span>" + m + "</span>"; }).join("");
