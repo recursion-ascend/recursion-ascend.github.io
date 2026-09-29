@@ -142,14 +142,14 @@
     if (!isNaN(lm)) updated.textContent = lm.getFullYear() + "-" + String(lm.getMonth() + 1).padStart(2, "0") + "-" + String(lm.getDate()).padStart(2, "0");
   }
 
-  /* ---------------- VISITORS: hide the section if the map widget never shows up ---------------- */
+  /* ---------------- VISITORS: hide the section only if the widget failed to load ----------------
+     (the globe itself stays hidden until it is scrolled fully into view, by design) */
   (function () {
     var sec = document.getElementById("visitors");
     if (!sec) return;
     setTimeout(function () {
-      var inner = sec.querySelector(".mmvst_inner");
-      if (!inner || getComputedStyle(inner).display === "none") sec.hidden = true;
-    }, 10000);
+      if (!sec.querySelector(".mmvst_outer")) sec.hidden = true; // blocked or offline
+    }, 15000);
   })();
 
   /* ---------------- publications: flags + grep ---------------- */
