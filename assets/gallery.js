@@ -62,8 +62,9 @@
     shown = photos.filter(function (p) { return !album || p.album === album; });
     grid.innerHTML = shown.map(function (p, i) {
       var cap = caption(p), loc = place(p);
-      return '<a class="tile' + (loc ? " has-loc" : "") + '" href="' + src(p, "full") + '" data-i="' + i + '" style="background:' + S.esc(p.color || "") + '">' +
+      return '<a class="tile' + (loc ? " has-loc" : "") + '" href="' + src(p, "full") + '" data-i="' + i + '">' +
         '<img src="' + src(p, "thumb") + '" alt="' + S.esc(cap || loc || p.name) + '" loading="lazy" decoding="async"' +
+        (p.color ? ' style="background:' + S.esc(p.color) + '"' : "") +
         (p.w ? ' width="' + p.w + '" height="' + p.h + '"' : "") + ">" +
         (cap || p.date || loc ? '<span class="tile-cap">' +
           (cap || p.date ? '<span class="cap-main"><span>' + S.esc(cap) + "</span>" +
@@ -91,7 +92,7 @@
     albumsEl.hidden = order.length < 2;
     if (albumsEl.hidden) return;
     albumsEl.innerHTML = '<button class="chip' + (album ? "" : " active") + '" data-album="">' +
-      "--all<i>" + photos.length + "</i></button>" +
+      '<span class="en">all</span><span class="zh" lang="zh-CN">全部</span><i>' + photos.length + "</i></button>" +
       order.map(function (a) {
         return '<button class="chip' + (album === a ? " active" : "") + '" data-album="' + S.esc(a) + '">' + S.esc(a) +
           "<i>" + counts[a] + "</i></button>";

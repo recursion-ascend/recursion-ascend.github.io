@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" data-lang="en" data-root="../" data-page="blog" data-title-en="blog(7) — Bowen Su" data-title-zh="博客 — Bowen Su">
+<html lang="en" data-lang="en" data-root="../" data-title-en="Notes — Bowen Su" data-title-zh="笔记 — Bowen Su">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>blog(7) — Bowen Su</title>
+  <title>Notes — Bowen Su</title>
   <meta name="description" content="Notes on AI systems, HPC and mathematics by Bowen Su.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%230f0f0d'/><text x='8' y='44' font-family='monospace' font-size='34' fill='%23f2a93b'>$_</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23fbf8f1'/><text x='10' y='46' font-family='Georgia,serif' font-style='italic' font-size='40' fill='%23c0392b'>∑</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Long+Cang&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
   <script>
     (function () {
       var d = document.documentElement;
       try {
-        var t = localStorage.getItem("theme");
+        var qt = /[?&]theme=(light|dark)\b/.exec(location.search);
+        var t = qt ? qt[1] : localStorage.getItem("theme");
         if (t === "light" || t === "dark") d.setAttribute("data-theme", t);
         var q = /[?&]lang=(zh|en)\b/.exec(location.search);
         var l = q ? q[1] : localStorage.getItem("lang");
@@ -25,62 +26,50 @@
   </script>
 </head>
 <body>
-<div class="term">
+<div class="sheet">
 
-  <header class="man-head">
-    <span>BLOG(7)</span>
-    <span class="mh-mid"><span class="en">Miscellaneous</span><span class="zh" lang="zh-CN">杂项</span></span>
-    <span>BLOG(7)</span>
-  </header>
-
-  <p class="prompt-line"><span class="ps1"><span class="u">recursion@ascend</span><span class="d">:</span><span class="p">~/blog</span><span class="d">$</span></span> ls ..</p>
-  <nav class="ls" aria-label="Site">
-    <a href="../">~/</a>
-    <a class="dir cur" href="../blog/">blog/</a>
-    <a class="dir" href="../gallery/">gallery/</a>
-    <a class="doc" href="../cv.pdf">cv.pdf</a>
-  </nav>
+  <div class="row">
+    <div></div>
+    <nav class="topbar" aria-label="Site">
+      <span class="tabs"><a href="../"><span class="en">home</span><span class="zh">主页</span></a><span class="sep">·</span><a href="../blog/" aria-current="page"><span class="en">blog</span><span class="zh">博客</span></a><span class="sep">·</span><a href="../gallery/"><span class="en">gallery</span><span class="zh">相册</span></a><span class="sep">·</span><a href="../cv.pdf"><span class="en">cv</span><span class="zh">简历</span></a></span>
+      <span class="ctl">
+        <button type="button" data-toggle-lang><span class="en">中文</span><span class="zh">English</span></button>
+        <button type="button" data-toggle-theme><span data-when="light"><span class="en">lights off ☾</span><span class="zh">关灯 ☾</span></span><span data-when="dark"><span class="en">lights on ☀</span><span class="zh">开灯 ☀</span></span></button>
+      </span>
+    </nav>
+    <div></div>
+  </div>
 
   <main>
-    <p class="prompt-line"><span class="ps1"><span class="u">recursion@ascend</span><span class="d">:</span><span class="p">~/blog</span><span class="d">$</span></span> ls -lt</p>
-    <h1 class="page-title">blog</h1>
-    <p class="page-sub"><span class="en">Notes on AI systems, high-performance computing, and the mathematics underneath.</span><span class="zh" lang="zh-CN">关于 AI 系统、高性能计算，以及背后那些数学的笔记。</span></p>
-    <div class="toolbar">
-      <label class="search"><span class="pfx">grep -i</span><input id="q" type="search" autocomplete="off" aria-label="Search posts"></label>
-    </div>
-    <div class="tag-row" id="tags"></div>
-    <ul class="post-list" id="post-list"></ul>
-    <p class="state-msg" id="state" hidden></p>
+    <section class="row" style="margin-top:0">
+      <div class="num"></div>
+      <div>
+        <h1 class="page-title"><span class="en">Notes</span><span class="zh">笔记</span></h1>
+        <p class="page-sub"><span class="en">On AI systems, high-performance computing, and the mathematics underneath.</span><span class="zh">关于 AI 系统、高性能计算，以及背后那些数学。</span></p>
+        <label class="search"><span class="pfx"><span class="en">find:</span><span class="zh">搜索：</span></span><input id="q" type="search" autocomplete="off" aria-label="Search notes"></label>
+        <div class="tag-row" id="tags"></div>
+        <ul class="post-list" id="post-list"></ul>
+        <p class="state-msg" id="state" hidden></p>
+      </div>
+      <div class="note pencil"><span class="en">newest on top ↓</span><span class="zh">新的在上面 ↓</span></div>
+    </section>
   </main>
 
-  <footer class="man-foot">
-    <span>recursion-ascend.github.io</span>
-    <span id="updated"></span>
-    <span>BLOG(7)</span>
+  <footer class="row">
+    <div></div>
+    <div>
+      <p class="sign">
+        <span class="en">write to me:</span><span class="zh">来信：</span>
+        <a href="mailto:subowen@msu.edu">subowen@msu.edu</a><button class="copy copy-email" type="button"><span class="en">(copy)</span><span class="zh">（复制）</span></button>
+        · <a href="https://github.com/recursion-ascend">github</a>
+      </p>
+      <p class="updated"><span class="en">last edited</span><span class="zh">最后修改</span> <span id="updated"></span></p>
+    </div>
+    <div></div>
   </footer>
 </div>
 
-<div class="statusbar" id="statusbar">
-  <span class="sb-session">[bowen-su]</span>
-  <nav class="sb-windows" aria-label="Pages">
-    <a class="win" data-win="home" href="../">0:home</a>
-    <a class="win" data-win="blog" href="../blog/">1:blog</a>
-    <a class="win" data-win="gallery" href="../gallery/">2:gallery</a>
-  </nav>
-  <button class="sb-cmd" type="button" id="cmd-open"><kbd>:</kbd><span class="hint"><span class="en"> cmd</span><span class="zh" lang="zh-CN"> 命令</span></span></button>
-  <span class="sb-spacer"></span>
-  <span class="sb-item sb-section">~/blog</span>
-  <button class="sb-btn" type="button" data-toggle-lang><span class="lbl">lang:</span><b class="en">en</b><b class="zh">中</b></button>
-  <button class="sb-btn" type="button" data-toggle-theme><span class="lbl">theme:</span><b id="sb-theme">dark</b></button>
-  <span class="sb-clock" id="sb-clock"></span>
-</div>
-
-<div class="cmd" id="cmd" role="dialog" aria-label="Command line" hidden>
-  <ul class="cmd-list" id="cmd-list" role="listbox"></ul>
-  <label class="cmd-line"><span>:</span><input id="cmd-input" type="text" autocomplete="off" spellcheck="false" aria-label="Command"></label>
-</div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
 <script src="../main.js"></script>
 <script src="../assets/blog.js"></script>
 </body>
